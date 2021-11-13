@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/06/13 08:42:29.000.953,=C:\Users\akn\Documents\Embarcadero\Studio\Projects\Unit16.pas</Transaction>
+    <Transaction>2021/06/13 08:44:08.000.540,C:\Users\akn\Documents\Embarcadero\Studio\Projects\Unit16.pas=E:\Dropbox\Documents\Program\main.pas</Transaction>
+    <Transaction>2021/06/13 08:44:08.000.540,C:\Users\akn\Documents\Embarcadero\Studio\Projects\Unit16.dfm=E:\Dropbox\Documents\Program\main.dfm</Transaction>
+    <Transaction>2021/06/13 08:44:40.000.640,C:\Users\akn\Documents\Embarcadero\Studio\Projects\Project16.dproj=E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\SAKAS_Conv.dproj</Transaction>
+    <Transaction>2021/06/13 08:44:59.000.045,E:\Dropbox\Documents\Program\main.dfm=E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\main.dfm</Transaction>
+    <Transaction>2021/06/13 08:44:59.000.045,E:\Dropbox\Documents\Program\main.pas=E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\main.pas</Transaction>
+    <Transaction>2021/06/13 08:49:48.000.062,=E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\SelShape.pas</Transaction>
+    <Transaction>2021/06/13 08:49:48.000.563,=E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\Unit_PW.pas</Transaction>
+    <Transaction>2021/06/13 08:49:48.000.228,=E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\Unit_LP.pas</Transaction>
+    <Transaction>2021/06/13 08:49:49.000.134,=E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\Unit_Tag.pas</Transaction>
+    <Transaction>2021/06/13 09:32:30.000.202,E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\SelShape.pas=</Transaction>
+    <Transaction>2021/06/13 09:33:41.000.289,=E:\Dropbox\Documents\Program\_20210615_SAKAS_Conv\SelShape.pas</Transaction>
+  </Transactions>
+</BorlandProject>
