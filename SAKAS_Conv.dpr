@@ -4,10 +4,11 @@ uses
   Vcl.Forms,
   main in 'main.pas' {Form_Main},
   Unit_ABOUT in 'Unit_ABOUT.pas' {AboutBox},
-  SelShape in '..\_20211115_Com\SelShape.pas',
-  Unit_LP in '..\_20211115_Com\Unit_LP.pas' {Form_LP},
-  Unit_PW in '..\_20211115_Com\Unit_PW.pas' {Form_PW},
-  Unit_SAKAS in '..\_20211115_Com\Unit_SAKAS.pas' {Form_SAKAS};
+  SelShape in '..\SAKAS-COM\SelShape.pas',
+  UFFT in '..\SAKAS-COM\UFFT.pas',
+  Unit_LP in '..\SAKAS-COM\Unit_LP.pas' {Form_LP},
+  Unit_PW in '..\SAKAS-COM\Unit_PW.pas' {Form_PW},
+  Unit_SAKAS in '..\SAKAS-COM\Unit_SAKAS.pas' {Form_SAKAS};
 
 {$R *.res}
 
