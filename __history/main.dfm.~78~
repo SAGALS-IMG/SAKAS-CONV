@@ -1,0 +1,1278 @@
+object Form_Main: TForm_Main
+  Left = 0
+  Top = 0
+  Caption = 'SAKAS Conv'
+  ClientHeight = 837
+  ClientWidth = 465
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 16
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 177
+    Width = 465
+    Height = 3
+    Cursor = crVSplit
+    Align = alTop
+    ExplicitLeft = 8
+    ExplicitTop = 216
+  end
+  object SB: TStatusBar
+    Left = 0
+    Top = 818
+    Width = 465
+    Height = 19
+    Panels = <>
+    SimplePanel = True
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 180
+    Width = 465
+    Height = 357
+    Align = alTop
+    Caption = 'Tag Info.'
+    Color = 15135487
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 1
+    TabStop = True
+    object Shape1: TShape
+      Left = 28
+      Top = 203
+      Width = 284
+      Height = 136
+      Brush.Color = clCream
+    end
+    object Shape2: TShape
+      Left = 135
+      Top = 255
+      Width = 164
+      Height = 77
+      Brush.Color = clMoneyGreen
+    end
+    object Label1: TLabel
+      Left = 6
+      Top = 22
+      Width = 59
+      Height = 16
+      Caption = 'File Name'
+    end
+    object Label10: TLabel
+      Left = 326
+      Top = 297
+      Width = 47
+      Height = 16
+      Caption = 'BK Num'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 326
+      Top = 214
+      Width = 66
+      Height = 16
+      Caption = 'Projection'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 326
+      Top = 324
+      Width = 71
+      Height = 16
+      Caption = 'Offset Num'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 31
+      Top = 256
+      Width = 98
+      Height = 16
+      Caption = #8592'                  '#8594
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 215
+      Top = 289
+      Width = 31
+      Height = 19
+      Caption = 'ROI'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 326
+      Top = 242
+      Width = 68
+      Height = 16
+      Caption = 'Rot. Angle'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 326
+      Top = 269
+      Width = 72
+      Height = 16
+      Caption = 'BK Interval'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object SB_FOpen: TSpeedButton
+      Left = 433
+      Top = 19
+      Width = 23
+      Height = 22
+      Flat = True
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00555555555555
+        5555555555555555555555555555555555555555555555555555555555555555
+        555555555555555555555555555555555555555FFFFFFFFFF555550000000000
+        55555577777777775F55500B8B8B8B8B05555775F555555575F550F0B8B8B8B8
+        B05557F75F555555575F50BF0B8B8B8B8B0557F575FFFFFFFF7F50FBF0000000
+        000557F557777777777550BFBFBFBFB0555557F555555557F55550FBFBFBFBF0
+        555557F555555FF7555550BFBFBF00055555575F555577755555550BFBF05555
+        55555575FFF75555555555700007555555555557777555555555555555555555
+        5555555555555555555555555555555555555555555555555555}
+      NumGlyphs = 2
+      OnClick = SB_FOpenClick
+    end
+    object SB_FOOpen: TSpeedButton
+      Left = 433
+      Top = 109
+      Width = 23
+      Height = 22
+      Flat = True
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00555555555555
+        5555555555555555555555555555555555555555555555555555555555555555
+        555555555555555555555555555555555555555FFFFFFFFFF555550000000000
+        55555577777777775F55500B8B8B8B8B05555775F555555575F550F0B8B8B8B8
+        B05557F75F555555575F50BF0B8B8B8B8B0557F575FFFFFFFF7F50FBF0000000
+        000557F557777777777550BFBFBFBFB0555557F555555557F55550FBFBFBFBF0
+        555557F555555FF7555550BFBFBF00055555575F555577755555550BFBF05555
+        55555575FFF75555555555700007555555555557777555555555555555555555
+        5555555555555555555555555555555555555555555555555555}
+      NumGlyphs = 2
+      OnClick = SB_FOOpenClick
+    end
+    object SB_BK1: TSpeedButton
+      Left = 433
+      Top = 49
+      Width = 23
+      Height = 22
+      Flat = True
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00555555555555
+        5555555555555555555555555555555555555555555555555555555555555555
+        555555555555555555555555555555555555555FFFFFFFFFF555550000000000
+        55555577777777775F55500B8B8B8B8B05555775F555555575F550F0B8B8B8B8
+        B05557F75F555555575F50BF0B8B8B8B8B0557F575FFFFFFFF7F50FBF0000000
+        000557F557777777777550BFBFBFBFB0555557F555555557F55550FBFBFBFBF0
+        555557F555555FF7555550BFBFBF00055555575F555577755555550BFBF05555
+        55555575FFF75555555555700007555555555557777555555555555555555555
+        5555555555555555555555555555555555555555555555555555}
+      NumGlyphs = 2
+      OnClick = SB_BK1Click
+    end
+    object SB_BK2: TSpeedButton
+      Left = 433
+      Top = 79
+      Width = 23
+      Height = 22
+      Flat = True
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00555555555555
+        5555555555555555555555555555555555555555555555555555555555555555
+        555555555555555555555555555555555555555FFFFFFFFFF555550000000000
+        55555577777777775F55500B8B8B8B8B05555775F555555575F550F0B8B8B8B8
+        B05557F75F555555575F50BF0B8B8B8B8B0557F575FFFFFFFF7F50FBF0000000
+        000557F557777777777550BFBFBFBFB0555557F555555557F55550FBFBFBFBF0
+        555557F555555FF7555550BFBFBF00055555575F555577755555550BFBF05555
+        55555575FFF75555555555700007555555555557777555555555555555555555
+        5555555555555555555555555555555555555555555555555555}
+      NumGlyphs = 2
+      OnClick = SB_BK2Click
+    end
+    object Label11: TLabel
+      Left = 6
+      Top = 52
+      Width = 48
+      Height = 16
+      Caption = 'BK1 File'
+    end
+    object Label12: TLabel
+      Left = 6
+      Top = 82
+      Width = 48
+      Height = 16
+      Caption = 'BK2 File'
+    end
+    object Label14: TLabel
+      Left = 6
+      Top = 112
+      Width = 64
+      Height = 16
+      Caption = 'Offset File'
+    end
+    object Label15: TLabel
+      Left = 5
+      Top = 142
+      Width = 49
+      Height = 16
+      Caption = 'Method'
+    end
+    object Label16: TLabel
+      Left = 250
+      Top = 142
+      Width = 130
+      Height = 16
+      Caption = '--- Fringe scan num '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label17: TLabel
+      Left = 326
+      Top = 184
+      Width = 71
+      Height = 16
+      Caption = 'Image Num'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Edit_FN: TEdit
+      Left = 74
+      Top = 19
+      Width = 358
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      Text = 'D:\201708_HARL\08101100'
+    end
+    object Edit_BKNum: TEdit
+      Left = 409
+      Top = 294
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+      Text = '100'
+    end
+    object Edit_Pro: TEdit
+      Left = 409
+      Top = 211
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      Text = '1050'
+    end
+    object Edit_OffFN: TEdit
+      Left = 74
+      Top = 109
+      Width = 358
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+    end
+    object Edit_DN: TEdit
+      Left = 409
+      Top = 321
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+      Text = '100'
+    end
+    object LEdit_OW: TLabeledEdit
+      Left = 206
+      Top = 189
+      Width = 81
+      Height = 24
+      EditLabel.Width = 68
+      EditLabel.Height = 16
+      EditLabel.Caption = 'Orig Width'
+      EditLabel.Font.Charset = DEFAULT_CHARSET
+      EditLabel.Font.Color = clRed
+      EditLabel.Font.Height = -13
+      EditLabel.Font.Name = 'Tahoma'
+      EditLabel.Font.Style = [fsBold]
+      EditLabel.ParentFont = False
+      NumbersOnly = True
+      TabOrder = 7
+    end
+    object LEdit_OFFY: TLabeledEdit
+      Left = 132
+      Top = 225
+      Width = 47
+      Height = 24
+      EditLabel.Width = 53
+      EditLabel.Height = 16
+      EditLabel.Caption = 'Offset Y'
+      EditLabel.Font.Charset = DEFAULT_CHARSET
+      EditLabel.Font.Color = clGreen
+      EditLabel.Font.Height = -13
+      EditLabel.Font.Name = 'Tahoma'
+      EditLabel.Font.Style = [fsBold]
+      EditLabel.ParentFont = False
+      NumbersOnly = True
+      TabOrder = 12
+    end
+    object LEdit_OFFX: TLabeledEdit
+      Left = 54
+      Top = 255
+      Width = 50
+      Height = 24
+      EditLabel.Width = 53
+      EditLabel.Height = 16
+      EditLabel.Caption = 'Offset X'
+      EditLabel.Font.Charset = DEFAULT_CHARSET
+      EditLabel.Font.Color = clGreen
+      EditLabel.Font.Height = -13
+      EditLabel.Font.Name = 'Tahoma'
+      EditLabel.Font.Style = [fsBold]
+      EditLabel.ParentFont = False
+      NumbersOnly = True
+      TabOrder = 11
+    end
+    object StaticText2: TStaticText
+      Left = 189
+      Top = 237
+      Width = 11
+      Height = 20
+      Caption = #8595
+      Color = clCream
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 13
+    end
+    object StaticText1: TStaticText
+      Left = 189
+      Top = 201
+      Width = 11
+      Height = 20
+      Caption = #8593
+      Color = clCream
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 14
+    end
+    object LEdit_OH: TLabeledEdit
+      Left = 8
+      Top = 303
+      Width = 81
+      Height = 24
+      EditLabel.Width = 72
+      EditLabel.Height = 16
+      EditLabel.Caption = 'Orig Height'
+      EditLabel.Font.Charset = DEFAULT_CHARSET
+      EditLabel.Font.Color = clRed
+      EditLabel.Font.Height = -13
+      EditLabel.Font.Name = 'Tahoma'
+      EditLabel.Font.Style = [fsBold]
+      EditLabel.ParentFont = False
+      NumbersOnly = True
+      TabOrder = 8
+    end
+    object LEdit_PW: TLabeledEdit
+      Left = 206
+      Top = 243
+      Width = 81
+      Height = 24
+      EditLabel.Width = 82
+      EditLabel.Height = 16
+      EditLabel.Caption = 'Image Width'
+      EditLabel.Color = clBtnFace
+      EditLabel.Font.Charset = DEFAULT_CHARSET
+      EditLabel.Font.Color = clBlue
+      EditLabel.Font.Height = -13
+      EditLabel.Font.Name = 'Tahoma'
+      EditLabel.Font.Style = [fsBold]
+      EditLabel.ParentColor = False
+      EditLabel.ParentFont = False
+      NumbersOnly = True
+      TabOrder = 9
+    end
+    object LEdit_PH: TLabeledEdit
+      Left = 109
+      Top = 303
+      Width = 81
+      Height = 24
+      EditLabel.Width = 86
+      EditLabel.Height = 16
+      EditLabel.Caption = 'Image Height'
+      EditLabel.Font.Charset = DEFAULT_CHARSET
+      EditLabel.Font.Color = clBlue
+      EditLabel.Font.Height = -13
+      EditLabel.Font.Name = 'Tahoma'
+      EditLabel.Font.Style = [fsBold]
+      EditLabel.ParentFont = False
+      NumbersOnly = True
+      TabOrder = 10
+    end
+    object Edit_Rot_angle: TEdit
+      Left = 409
+      Top = 239
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      Text = '1050'
+    end
+    object Edit_BKInt: TEdit
+      Left = 409
+      Top = 266
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+      Text = '100'
+    end
+    object Edit_BKFN2: TEdit
+      Left = 74
+      Top = 79
+      Width = 358
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 15
+    end
+    object Edit_BKFN1: TEdit
+      Left = 74
+      Top = 49
+      Width = 358
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 16
+    end
+    object CB_Method: TComboBox
+      Left = 74
+      Top = 139
+      Width = 159
+      Height = 24
+      ItemIndex = 0
+      TabOrder = 17
+      Text = 'Absorption'
+      Items.Strings = (
+        'Absorption'
+        'Fringe Scan')
+    end
+    object Edit_FS: TEdit
+      Left = 386
+      Top = 139
+      Width = 46
+      Height = 24
+      Alignment = taRightJustify
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 18
+      Text = '3'
+    end
+    object Edit_ImgN: TEdit
+      Left = 409
+      Top = 181
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 19
+      Text = '1050'
+    end
+  end
+  object Memo: TRichEdit
+    Left = 0
+    Top = 713
+    Width = 465
+    Height = 105
+    Align = alClient
+    Font.Charset = SHIFTJIS_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    PlainText = True
+    ScrollBars = ssVertical
+    TabOrder = 3
+    Zoom = 100
+    ExplicitTop = 712
+  end
+  object GroupBox3: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 465
+    Height = 177
+    Align = alTop
+    Caption = 'Tag Files'
+    Color = 16771022
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object Panel2: TPanel
+      Left = 2
+      Top = 18
+      Width = 461
+      Height = 58
+      Align = alTop
+      BevelOuter = bvNone
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      object SB_Help: TSpeedButton
+        Left = 430
+        Top = -1
+        Width = 31
+        Height = 31
+        Flat = True
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF0033333CCCCC33
+          33333FFFF77777FFFFFFCCCCCC808CCCCCC3777777F7F777777F008888070888
+          8003777777777777777F0F0770F7F0770F0373F33337F333337370FFFFF7FFFF
+          F07337F33337F33337F370FFFB99FBFFF07337F33377F33337F330FFBF99BFBF
+          F033373F337733333733370BFBF7FBFB0733337F333FF3337F33370FBF98BFBF
+          0733337F3377FF337F333B0BFB990BFB03333373FF777FFF73333FB000B99000
+          B33333377737777733333BFBFBFB99FBF33333333FF377F333333FBF99BF99BF
+          B333333377F377F3333333FB99FB99FB3333333377FF77333333333FB9999FB3
+          333333333777733333333333FBFBFB3333333333333333333333}
+        NumGlyphs = 2
+        OnClick = SB_HelpClick
+      end
+      object SB_ViewInfo: TSpeedButton
+        Left = 310
+        Top = 33
+        Width = 111
+        Height = 22
+        Caption = 'View Details'
+        Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+          333333333333FF3333333333333C0C333333333333F777F3333333333CC0F0C3
+          333333333777377F33333333C30F0F0C333333337F737377F333333C00FFF0F0
+          C33333F7773337377F333CC0FFFFFF0F0C3337773F33337377F3C30F0FFFFFF0
+          F0C37F7373F33337377F00FFF0FFFFFF0F0C7733373F333373770FFFFF0FFFFF
+          F0F073F33373F333373730FFFFF0FFFFFF03373F33373F333F73330FFFFF0FFF
+          00333373F33373FF77333330FFFFF000333333373F333777333333330FFF0333
+          3333333373FF7333333333333000333333333333377733333333333333333333
+          3333333333333333333333333333333333333333333333333333}
+        NumGlyphs = 2
+        ParentFont = False
+        OnClick = SB_ViewInfoClick
+      end
+      object SB_NewTag: TSpeedButton
+        Left = 189
+        Top = 5
+        Width = 23
+        Height = 22
+        Flat = True
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000130B0000130B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF0033333333B333
+          333B33FF33337F3333F73BB3777BB7777BB3377FFFF77FFFF77333B000000000
+          0B3333777777777777333330FFFFFFFF07333337F33333337F333330FFFFFFFF
+          07333337F33333337F333330FFFFFFFF07333337F33333337F333330FFFFFFFF
+          07333FF7F33333337FFFBBB0FFFFFFFF0BB37777F3333333777F3BB0FFFFFFFF
+          0BBB3777F3333FFF77773330FFFF000003333337F333777773333330FFFF0FF0
+          33333337F3337F37F3333330FFFF0F0B33333337F3337F77FF333330FFFF003B
+          B3333337FFFF77377FF333B000000333BB33337777777F3377FF3BB3333BB333
+          3BB33773333773333773B333333B3333333B7333333733333337}
+        NumGlyphs = 2
+        OnClick = SB_NewTagClick
+      end
+      object BB_Get_List: TBitBtn
+        Left = 3
+        Top = 3
+        Width = 102
+        Height = 25
+        Caption = 'Get Tag List'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+        OnClick = BB_Get_ListClick
+      end
+      object BB_Proc: TBitBtn
+        Left = 214
+        Top = 3
+        Width = 85
+        Height = 25
+        Caption = 'Make Sinos'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clNavy
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+        OnClick = BB_ProcClick
+      end
+      object CB_Ext: TComboBox
+        Left = 114
+        Top = 4
+        Width = 74
+        Height = 24
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ItemIndex = 0
+        ParentFont = False
+        TabOrder = 2
+        Text = '*.tag'
+        Items.Strings = (
+          '*.tag'
+          '*.ini'
+          '*.*')
+      end
+      object CB_AllCK: TCheckBox
+        Left = 317
+        Top = 8
+        Width = 79
+        Height = 17
+        Caption = 'Check All'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 3
+        OnClick = CB_AllCKClick
+      end
+      object RB_Proc2: TRadioButton
+        Left = 5
+        Top = 36
+        Width = 144
+        Height = 17
+        Caption = 'Sino cond. in Tag'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
+      end
+      object RB_Compled: TRadioButton
+        Left = 147
+        Top = 36
+        Width = 84
+        Height = 17
+        Caption = 'Completed'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 5
+      end
+    end
+    object Panel3: TPanel
+      Left = 2
+      Top = 76
+      Width = 461
+      Height = 99
+      Align = alClient
+      BevelOuter = bvNone
+      Caption = 'Panel3'
+      TabOrder = 1
+      object CLB_File: TCheckListBox
+        Left = 0
+        Top = 0
+        Width = 461
+        Height = 99
+        Align = alClient
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ItemHeight = 13
+        ParentFont = False
+        TabOrder = 0
+        OnClick = CLB_FileClick
+      end
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Top = 537
+    Width = 465
+    Height = 176
+    Align = alTop
+    Caption = 'Sino Cond.'
+    Color = 14740960
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 4
+    object Label8: TLabel
+      Left = 376
+      Top = 148
+      Width = 29
+      Height = 16
+      Caption = 'Z Av.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 301
+      Top = 150
+      Width = 12
+      Height = 13
+      Caption = #65374
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 214
+      Top = 148
+      Width = 31
+      Height = 16
+      Caption = 'Slice '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object BB_Open: TBitBtn
+      Left = 8
+      Top = 21
+      Width = 90
+      Height = 25
+      Caption = 'Open Image'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = BB_OpenClick
+    end
+    object BB_PrevBK: TBitBtn
+      Left = 8
+      Top = 52
+      Width = 90
+      Height = 25
+      Caption = 'Load BK'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clTeal
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      OnClick = BB_PrevBKClick
+    end
+    object Edit_PrevBK: TEdit
+      Left = 160
+      Top = 53
+      Width = 20
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+      Text = '0'
+    end
+    object UD_PrevBK: TUpDown
+      Left = 180
+      Top = 53
+      Width = 16
+      Height = 24
+      Associate = Edit_PrevBK
+      Max = 2
+      TabOrder = 7
+      OnClick = UD_PrevBKClick
+    end
+    object Edit_DBK: TEdit
+      Left = 160
+      Top = 83
+      Width = 36
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 9
+      Text = '95'
+    end
+    object CB_Damy: TCheckBox
+      Left = 109
+      Top = 87
+      Width = 48
+      Height = 17
+      Caption = 'Dumy'
+      Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      State = cbChecked
+      TabOrder = 8
+    end
+    object BB_DARK: TBitBtn
+      Left = 8
+      Top = 83
+      Width = 90
+      Height = 25
+      Caption = 'Load Offset'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clTeal
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      StyleElements = [seFont, seBorder]
+      OnClick = BB_DARKClick
+    end
+    object BB_Prev_NImg: TBitBtn
+      Left = 8
+      Top = 114
+      Width = 90
+      Height = 25
+      Caption = 'Check Img'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clTeal
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 3
+      OnClick = BB_Prev_NImgClick
+    end
+    object Edit_PrevNImg: TEdit
+      Left = 109
+      Top = 114
+      Width = 70
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 10
+      Text = '0'
+    end
+    object UD_PrevNImg: TUpDown
+      Left = 179
+      Top = 114
+      Width = 16
+      Height = 24
+      Associate = Edit_PrevNImg
+      Max = 10000
+      TabOrder = 11
+      OnClick = UD_PrevNImgClick
+    end
+    object CB_Ln2: TCheckBox
+      Left = 114
+      Top = 149
+      Width = 51
+      Height = 17
+      Caption = '-Ln'
+      Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      State = cbChecked
+      TabOrder = 13
+    end
+    object CB_WOBK: TCheckBox
+      Left = 16
+      Top = 149
+      Width = 67
+      Height = 17
+      Caption = 'W/O BK'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 12
+    end
+    object BB_Norm: TBitBtn
+      Left = 208
+      Top = 52
+      Width = 85
+      Height = 25
+      Caption = 'Make Pro'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clTeal
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 4
+      OnClick = BB_NormClick
+    end
+    object BB_STop2: TBitBtn
+      Left = 300
+      Top = 52
+      Width = 85
+      Height = 25
+      Caption = 'STOP'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 20
+      OnClick = BB_STop2Click
+    end
+    object CB_SwapXY: TCheckBox
+      Left = 300
+      Top = 85
+      Width = 66
+      Height = 21
+      Caption = 'XY Swap'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 15
+    end
+    object CB_Bin: TCheckBox
+      Left = 215
+      Top = 87
+      Width = 62
+      Height = 17
+      Caption = 'Binning'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 14
+    end
+    object CB_Med: TCheckBox
+      Left = 380
+      Top = 87
+      Width = 62
+      Height = 17
+      Caption = 'Median'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 16
+    end
+    object BB_MakeSino: TBitBtn
+      Left = 208
+      Top = 114
+      Width = 85
+      Height = 25
+      Caption = 'Make Sino'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clTeal
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+      OnClick = BB_MakeSinoClick
+    end
+    object BB_STOP: TBitBtn
+      Left = 300
+      Top = 114
+      Width = 85
+      Height = 25
+      Caption = 'STOP'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 21
+      OnClick = BB_STOPClick
+    end
+    object Edit_SinoEnd: TEdit
+      Left = 319
+      Top = 145
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 18
+      Text = '200'
+    end
+    object Edit_SinoST: TEdit
+      Left = 246
+      Top = 145
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 17
+      Text = '200'
+    end
+    object Edit_AvR: TEdit
+      Left = 410
+      Top = 145
+      Width = 31
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 19
+      Text = '1'
+    end
+    object BB_Copy_Cond: TBitBtn
+      Left = 208
+      Top = 21
+      Width = 85
+      Height = 25
+      Caption = 'Save Cond.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 22
+      OnClick = BB_Copy_CondClick
+    end
+    object CB_BKOnly: TCheckBox
+      Left = 109
+      Top = 56
+      Width = 44
+      Height = 17
+      Caption = 'Only'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 23
+    end
+    object Edit_ImgNo: TEdit
+      Left = 109
+      Top = 21
+      Width = 70
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 24
+      Text = '0'
+    end
+    object UD_ImgNo: TUpDown
+      Left = 179
+      Top = 21
+      Width = 16
+      Height = 24
+      Associate = Edit_ImgNo
+      Max = 10000
+      TabOrder = 25
+      OnClick = UD_ImgNoClick
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 144
+    Top = 104
+  end
+end

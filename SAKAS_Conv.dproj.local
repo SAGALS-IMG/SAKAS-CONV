@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/07/16 08:52:43.000.170,=C:\Users\akn\Documents\Embarcadero\Studio\Projects\Unit17.pas</Transaction>
+    <Transaction>2021/07/16 08:53:30.000.149,E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\main.dfm=C:\Users\akn\Documents\Embarcadero\Studio\Projects\Unit17.dfm</Transaction>
+    <Transaction>2021/07/16 08:53:30.000.149,E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\main.pas=C:\Users\akn\Documents\Embarcadero\Studio\Projects\Unit17.pas</Transaction>
+    <Transaction>2021/07/16 08:53:39.000.006,E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\SAKAS_Conv.dproj=C:\Users\akn\Documents\Embarcadero\Studio\Projects\Project17.dproj</Transaction>
+    <Transaction>2021/07/16 09:06:43.000.580,=E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit_LP.pas</Transaction>
+    <Transaction>2021/07/16 09:06:43.000.404,=E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\SelShape.pas</Transaction>
+    <Transaction>2021/07/16 09:06:43.000.956,=E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit_PW.pas</Transaction>
+    <Transaction>2021/07/16 09:06:44.000.520,=E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit_Tag.pas</Transaction>
+    <Transaction>2021/07/16 09:48:03.000.230,E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit_Tag.pas=</Transaction>
+    <Transaction>2021/07/17 07:51:09.000.009,=E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit1.pas</Transaction>
+    <Transaction>2021/07/17 07:55:34.000.225,E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit1.dfm=E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit_SAKAS.dfm</Transaction>
+    <Transaction>2021/07/17 07:55:34.000.225,E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit1.pas=E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit_SAKAS.pas</Transaction>
+    <Transaction>2021/07/17 20:07:33.000.402,=E:\Dropbox\Documents\Program\_20210716_SAKAS_Conv\Unit_ABOUT.pas</Transaction>
+  </Transactions>
+</BorlandProject>
