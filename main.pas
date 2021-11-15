@@ -328,10 +328,10 @@ begin
 
     if not(Ini.ValueExists( 'Proc_1', 'BK_Interval')) then
       Ini.WriteString( 'Proc_1', 'BK_Interval', Edit_BKInt.Text);
-    if not(Ini.ValueExists('Proc_1', 'BK_Image_Numer')) then
-      Ini.WriteString( 'Proc_1', 'BK_Image_Numer', Edit_BKNum.Text );
-    if not(Ini.ValueExists( 'Proc_1', 'Off_Image_Numer')) then
-      Ini.WriteString( 'Proc_1', 'Off_Image_Numer', Edit_DN.Text);
+    if not(Ini.ValueExists('Proc_1', 'BK_Image_Num')) then
+      Ini.WriteString( 'Proc_1', 'BK_Image_Num', Edit_BKNum.Text );
+    if not(Ini.ValueExists( 'Proc_1', 'Off_Image_Num')) then
+      Ini.WriteString( 'Proc_1', 'Off_Image_Num', Edit_DN.Text);
 
     if not(Ini.ValueExists('Proc_1', 'Width')) then
       Ini.WriteString( 'Proc_1', 'Width', LEdit_PW.Text);
@@ -352,7 +352,7 @@ begin
     lFN :=TPath.GetFileNameWithoutExtension(BFN);
     Ini.WriteString( 'Proc_2', 'File_Name', BDir2+lFN+'_s_*');
 
-    Ini.WriteInteger('Proc_2','Image_Numer',StrToInt(Edit_SinoEnd.Text)-StrToInt(Edit_SinoST.Text)+1);
+    Ini.WriteInteger('Proc_2','Image_Num',StrToInt(Edit_SinoEnd.Text)-StrToInt(Edit_SinoST.Text)+1);
 
     if CB_SwapXY.Checked then
     begin

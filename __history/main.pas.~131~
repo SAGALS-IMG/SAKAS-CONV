@@ -40,7 +40,6 @@ type
     Memo: TRichEdit;
     GroupBox3: TGroupBox;
     Panel2: TPanel;
-    BB_Get_List: TBitBtn;
     BB_Proc: TBitBtn;
     Panel3: TPanel;
     CLB_File: TCheckListBox;
@@ -78,7 +77,6 @@ type
     SB_Help: TSpeedButton;
     Label7: TLabel;
     SB_ViewInfo: TSpeedButton;
-    RB_Proc2: TRadioButton;
     SB_BK1: TSpeedButton;
     Edit_BKFN2: TEdit;
     SB_BK2: TSpeedButton;
@@ -93,10 +91,16 @@ type
     CB_BKOnly: TCheckBox;
     Edit_ImgNo: TEdit;
     UD_ImgNo: TUpDown;
-    SB_NewTag: TSpeedButton;
+    SB_TagList_Reload: TSpeedButton;
     RB_Compled: TRadioButton;
     Label17: TLabel;
     Edit_ImgN: TEdit;
+    Label37: TLabel;
+    Edit_Dir: TEdit;
+    SB_Dir: TSpeedButton;
+    Panel1: TPanel;
+    RB_Proc2: TRadioButton;
+    BB_STOP_Proc: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Init_Cond(Sender: TObject);
@@ -112,7 +116,6 @@ type
     procedure UD_PrevNImgClick(Sender: TObject; Button: TUDBtnType);
     procedure BB_NormClick(Sender: TObject);
     procedure BB_MakeSinoClick(Sender: TObject);
-    procedure BB_Get_ListClick(Sender: TObject);
     procedure BB_Copy_CondClick(Sender: TObject);
     procedure CLB_FileClick(Sender: TObject);
     procedure CB_AllCKClick(Sender: TObject);
@@ -132,7 +135,9 @@ type
     procedure ABS_Prev(Sender: TObject);
     procedure Ph_Prev(Sender: TObject);
     procedure UD_ImgNoClick(Sender: TObject; Button: TUDBtnType);
-    procedure SB_NewTagClick(Sender: TObject);
+    procedure SB_TagList_ReloadClick(Sender: TObject);
+    procedure SB_DirClick(Sender: TObject);
+    procedure BB_STOP_ProcClick(Sender: TObject);
 
   private
     { Private êÈåæ }
@@ -183,6 +188,7 @@ begin
     else
       WindowState := wsNormal;
 
+    Edit_Dir.Text := Ini.ReadString( 'Param', 'Tag_Dir', '' );
 
     LEdit_OW.Text  := Ini.ReadString( 'Param', 'OW', '1000' );
     LEdit_OH.Text  := Ini.ReadString( 'Param', 'OH', '500' );
@@ -199,6 +205,7 @@ begin
     CB_Method.ItemIndex  := Ini.ReadInteger( 'Param', 'Method', 0 );
     Edit_FS.Text  := Ini.ReadString( 'Param', 'FSN', '3' );
 
+    Edit_ImgN.Text  := Ini.ReadString( 'Param', 'ImgN', '650' );
     Edit_Pro.Text  := Ini.ReadString( 'Param', 'Pro', '650' );
     Edit_Rot_Angle.Text  := Ini.ReadString( 'Param', 'Angle', '360' );
     Edit_BKInt.Text  := Ini.ReadString( 'Param', 'BKInt', '1050' );
@@ -227,6 +234,8 @@ begin
     Ini.WriteInteger( 'Form_main', 'Width', Width );
     Ini.WriteInteger( 'Form_main', 'Height', Height );
 
+    Ini.WriteString( 'Param', 'Tag_Dir', Edit_Dir.Text );
+
     Ini.WriteString( 'Param', 'OW', LEdit_OW.Text );
     Ini.WriteString( 'Param', 'OH', LEdit_OH.Text );
     Ini.WriteString( 'Param', 'PW', LEdit_PW.Text );
@@ -242,6 +251,7 @@ begin
     Ini.WriteInteger( 'Param', 'Method', CB_Method.ItemIndex );
     Ini.WriteString( 'Param', 'FSN', Edit_FS.Text);
 
+    Ini.WriteString( 'Param', 'ImgN', Edit_ImgN.Text );
     Ini.WriteString( 'Param', 'Pro', Edit_Pro.Text );
     Ini.WriteString( 'Param', 'Angle', Edit_Rot_Angle.Text );
     Ini.WriteString( 'Param', 'BKInt', Edit_BKInt.Text );
@@ -319,9 +329,9 @@ begin
     if not(Ini.ValueExists( 'Proc_1', 'BK_Interval')) then
       Ini.WriteString( 'Proc_1', 'BK_Interval', Edit_BKInt.Text);
     if not(Ini.ValueExists('Proc_1', 'BK_Image_Numer')) then
-      Ini.WriteString( 'Proc_1', 'BK_Image_Numer', Edit_BKNum.Text );
+      Ini.WriteString( 'Proc_1', 'BK_Image_Num', Edit_BKNum.Text );
     if not(Ini.ValueExists( 'Proc_1', 'Off_Image_Numer')) then
-      Ini.WriteString( 'Proc_1', 'Off_Image_Numer', Edit_DN.Text);
+      Ini.WriteString( 'Proc_1', 'Off_Image_Num', Edit_DN.Text);
 
     if not(Ini.ValueExists('Proc_1', 'Width')) then
       Ini.WriteString( 'Proc_1', 'Width', LEdit_PW.Text);
@@ -342,7 +352,7 @@ begin
     lFN :=TPath.GetFileNameWithoutExtension(BFN);
     Ini.WriteString( 'Proc_2', 'File_Name', BDir2+lFN+'_s_*');
 
-    Ini.WriteInteger('Proc_2','Image_Numer',StrToInt(Edit_SinoEnd.Text)-StrToInt(Edit_SinoST.Text)+1);
+    Ini.WriteInteger('Proc_2','Image_Num',StrToInt(Edit_SinoEnd.Text)-StrToInt(Edit_SinoST.Text)+1);
 
     if CB_SwapXY.Checked then
     begin
@@ -554,9 +564,10 @@ begin
   end
   else
   begin
+    TmpStr := '';
     for m:=0 to (Pro div BKInt) do
     begin
-      TmpStr := 'BK '+m.ToString+' ';
+      TmpStr := TmpStr+' BK '+m.ToString+' : ';
       for kk:=0 to BKNum-1 do
       begin
         ImgPV.UD_TPro.Position := BKInt*m+BKNum*m+kk;
@@ -564,9 +575,9 @@ begin
         for j:=0 to ImgPV.PH-1 do
           for i:=0 to ImgPV.PW-1 do
             BKData[m,j,i] := BKData[m,j,i]+ImgPV.IData[j,i];
-        TmpStr := TmpStr+' '+kk.ToString;
+        TmpStr := TmpStr+' '+ImgPV.UD_TPro.Position.ToString;
         Application.ProcessMessages;
-        Memo.Lines.Insert(0,kk.ToString);
+        Memo.Text := TmpStr;
       end;
 
       for j:=0 to ImgPV.PH-1 do
@@ -582,6 +593,7 @@ begin
           for i:=0 to ImgPV.PW-1 do
             BKData[m,j,i] := ImgPV.PData[j,i];
       end;
+      TmpStr := TmpStr + #13+#10;
     end;
 
     for j:=0 to ImgPV.PH-1 do
@@ -1264,6 +1276,7 @@ begin
 
       Application.ProcessMessages;
       SB.SimpleText := 'Slice : '+k.ToString;
+      Memo.Lines.Add('Sino No. '+k.ToString);
       if not(go) then
         exit;
     end
@@ -1356,25 +1369,6 @@ end;
 //*****************************************************
 //*****************************************************
 
-procedure TForm_Main.BB_Get_ListClick(Sender: TObject);
-var
-  Path: String;
-  FileList: TStringDynArray;
-  FileName: String;
-begin
-  if OpenDialog1.Execute then
-  begin
-    CLB_File.Items.Clear;
-    Path := ExtractFilePath(OpenDialog1.FileName);
-
-    FileList := TDirectory.GetFiles(Path, CB_Ext.Items[CB_Ext.ItemIndex] , TSearchOption.soTopDirectoryOnly);
-    for FileName in FileList do
-    begin
-      CLB_File.Items.Add(FileName);
-    end;
-  end;
-end;
-
 procedure TForm_Main.CB_AllCKClick(Sender: TObject);
 var
   li:longint;
@@ -1410,10 +1404,18 @@ begin
       OpenTag(Sender);
       BB_NormClick(Sender);
       BB_MakeSinoClick(Sender);
-      WriteProc2(Sender);
       CLB_File.Checked[li] := false;
     end;
   end;
+end;
+
+procedure TForm_Main.BB_STOP_ProcClick(Sender: TObject);
+var
+  li:longint;
+begin
+  for li:=0 to CLB_File.Items.Count-1 do
+    CLB_File.Checked[li] := false;
+  Go := false;
 end;
 
 
@@ -1427,6 +1429,15 @@ procedure TForm_Main.SB_BK2Click(Sender: TObject);
 begin
   if OpenDialog1.Execute then
     Edit_BKFN2.Text := OpenDialog1.FileName;
+end;
+
+procedure TForm_Main.SB_DirClick(Sender: TObject);
+begin
+  if OpenDialog1.Execute then
+  begin
+    Edit_Dir.Text := ExtractFilePath(OpenDialog1.FileName);
+    SB_TagList_ReloadClick(Sender);
+  end;
 end;
 
 procedure TForm_Main.SB_FOOpenClick(Sender: TObject);
@@ -1446,16 +1457,16 @@ begin
   AboutBox.Show;
 end;
 
-procedure TForm_Main.SB_NewTagClick(Sender: TObject);
+procedure TForm_Main.SB_TagList_ReloadClick(Sender: TObject);
 var
   Path: String;
   FileList: TStringDynArray;
   FileName: String;
 begin
-  if OpenDialog1.FileName<>'' then
+  if Edit_Dir.Text<>'' then
   begin
     CLB_File.Items.Clear;
-    Path := ExtractFilePath(OpenDialog1.FileName);
+    Path := ExtractFilePath(Edit_Dir.Text);
 
     FileList := TDirectory.GetFiles(Path, CB_Ext.Items[CB_Ext.ItemIndex] , TSearchOption.soTopDirectoryOnly);
     for FileName in FileList do
