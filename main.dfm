@@ -32,7 +32,6 @@ object Form_Main: TForm_Main
     Height = 19
     Panels = <>
     SimplePanel = True
-    ExplicitTop = 818
   end
   object GroupBox1: TGroupBox
     Left = 0
@@ -623,7 +622,6 @@ object Form_Main: TForm_Main
     ScrollBars = ssVertical
     TabOrder = 3
     Zoom = 100
-    ExplicitHeight = 41
   end
   object GroupBox3: TGroupBox
     Left = 0
@@ -921,8 +919,6 @@ object Form_Main: TForm_Main
       BevelOuter = bvNone
       Caption = 'Panel3'
       TabOrder = 1
-      ExplicitTop = 145
-      ExplicitHeight = 94
       object CLB_File: TCheckListBox
         Left = 0
         Top = 0
@@ -938,7 +934,6 @@ object Form_Main: TForm_Main
         ParentFont = False
         TabOrder = 0
         OnClick = CLB_FileClick
-        ExplicitHeight = 94
       end
     end
   end
