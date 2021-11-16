@@ -654,6 +654,7 @@ object Form_Main: TForm_Main
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      ExplicitTop = 12
       object SB_Help: TSpeedButton
         Left = 430
         Top = -3
@@ -860,14 +861,14 @@ object Form_Main: TForm_Main
       object Panel1: TPanel
         Left = 12
         Top = 31
-        Width = 128
+        Width = 142
         Height = 20
         BevelOuter = bvNone
         TabOrder = 5
         object RB_Proc2: TRadioButton
           Left = 0
           Top = 0
-          Width = 128
+          Width = 142
           Height = 17
           Align = alTop
           Caption = 'Sino cond. in Tag'
@@ -878,6 +879,7 @@ object Form_Main: TForm_Main
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
+          ExplicitWidth = 129
         end
       end
       object BB_STOP_Proc: TBitBtn
