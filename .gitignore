@@ -26,6 +26,7 @@
 #*.obj
 #
 
+<<<<<<< Updated upstream
 # Delphi compiler-generated binaries (safe to delete)
 *.exe
 *.dll
@@ -67,3 +68,9 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
+=======
+*.~73~
+*.~73~
+*.~83~
+*.identcache
+>>>>>>> Stashed changes
