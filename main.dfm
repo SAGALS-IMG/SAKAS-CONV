@@ -37,7 +37,7 @@ object Form_Main: TForm_Main
     Left = 0
     Top = 212
     Width = 465
-    Height = 381
+    Height = 384
     Align = alTop
     Caption = 'Tag Info.'
     Color = 15135487
@@ -52,15 +52,15 @@ object Form_Main: TForm_Main
     TabOrder = 1
     TabStop = True
     object Shape1: TShape
-      Left = 28
+      Left = 29
       Top = 231
       Width = 284
-      Height = 136
+      Height = 138
       Brush.Color = clCream
     end
     object Shape2: TShape
       Left = 135
-      Top = 295
+      Top = 283
       Width = 164
       Height = 77
       Brush.Color = clMoneyGreen
@@ -342,7 +342,6 @@ object Form_Main: TForm_Main
       Width = 326
       Height = 16
       AutoSize = False
-      Caption = 'Sample Name: '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -13
@@ -653,9 +652,9 @@ object Form_Main: TForm_Main
   end
   object Memo: TRichEdit
     Left = 0
-    Top = 769
+    Top = 772
     Width = 465
-    Height = 85
+    Height = 82
     Align = alClient
     Font.Charset = SHIFTJIS_CHARSET
     Font.Color = clWindowText
@@ -988,7 +987,7 @@ object Form_Main: TForm_Main
   end
   object GroupBox2: TGroupBox
     Left = 0
-    Top = 593
+    Top = 596
     Width = 465
     Height = 176
     Align = alTop
@@ -1003,7 +1002,8 @@ object Form_Main: TForm_Main
     ParentColor = False
     ParentFont = False
     TabOrder = 4
-    ExplicitTop = 601
+    ExplicitLeft = 14
+    ExplicitTop = 591
     object Label8: TLabel
       Left = 376
       Top = 148
@@ -1409,9 +1409,28 @@ object Form_Main: TForm_Main
       TabOrder = 25
       OnClick = UD_ImgNoClick
     end
+    object BB_SaveImg: TBitBtn
+      Left = 300
+      Top = 21
+      Width = 106
+      Height = 25
+      Caption = 'Save Ph map'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 26
+      OnClick = BB_SaveImgClick
+    end
   end
   object OpenDialog1: TOpenDialog
     Left = 168
     Top = 160
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 242
+    Top = 158
   end
 end

@@ -103,6 +103,8 @@ type
     BB_STOP_Proc: TBitBtn;
     Labele18: TLabel;
     Label_Sample_Name: TLabel;
+    BB_SaveImg: TBitBtn;
+    SaveDialog1: TSaveDialog;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Init_Cond(Sender: TObject);
@@ -140,6 +142,7 @@ type
     procedure SB_TagList_ReloadClick(Sender: TObject);
     procedure SB_DirClick(Sender: TObject);
     procedure BB_STOP_ProcClick(Sender: TObject);
+    procedure BB_SaveImgClick(Sender: TObject);
 
   private
     { Private êÈåæ }
@@ -287,6 +290,8 @@ begin
   BKInt := StrToInt(Edit_BKInt.Text);
   FSN := StrToInt(Edit_FS.Text);
   Pro := StrToInt(Edit_ImgN.Text);
+  if CB_Method.ItemIndex=1 then
+    Pro := Pro div FSN;
   if Edit_BKFN1.Text='' then
     Pro := Pro - ((Pro div BKInt) +1)*BKNum;
 end;
@@ -1361,6 +1366,46 @@ begin
 
   WriteProc2(Sender);
   WriteComped(Sender);
+end;
+
+procedure TForm_Main.BB_SaveImgClick(Sender: TObject);
+var
+  li,lj,lPW,lPH:longint;
+  FS : TFileStream;
+  lDData : array[0..4000] of double;
+begin
+  if SaveDialog1.Execute then
+  begin
+    lPW := StrToInt(LEdit_PW.Text);
+    lPH := StrToInt(LEdit_PH.Text);
+
+    FS := TFileStream.Create(SaveDialog1.FileName+'.ph',fmCreate);
+    for lj:=0 to lPH-1 do
+    begin
+      for li:=0 to lPW-1 do
+        lDData[li] := PhData[lj,li] ;
+      FS.WriteBuffer(lDData,lPW*8);
+    end;
+    FS.Free;
+
+    FS := TFileStream.Create(SaveDialog1.FileName+'.amp',fmCreate);
+    for lj:=0 to lPH-1 do
+    begin
+      for li:=0 to lPW-1 do
+        lDData[li] := AmpData[lj,li] ;
+      FS.WriteBuffer(lDData,lPW*8);
+    end;
+    FS.Free;
+
+    FS := TFileStream.Create(SaveDialog1.FileName+'.abs',fmCreate);
+    for lj:=0 to lPH-1 do
+    begin
+      for li:=0 to lPW-1 do
+        lDData[li] := AbsData[lj,li] ;
+      FS.WriteBuffer(lDData,lPW*8);
+    end;
+    FS.Free;
+  end;
 end;
 
 procedure TForm_Main.BB_STop2Click(Sender: TObject);
