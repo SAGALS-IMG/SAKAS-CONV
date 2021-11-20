@@ -101,6 +101,8 @@ type
     Panel1: TPanel;
     RB_Proc2: TRadioButton;
     BB_STOP_Proc: TBitBtn;
+    Labele18: TLabel;
+    Label_Sample_Name: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Init_Cond(Sender: TObject);
@@ -409,6 +411,12 @@ begin
       if Ini.ReadInteger('Method', 'Pro_angle', 1) =0 then
         Edit_Rot_Angle.Text := '180';
 
+      Label_Sample_Name.Caption :=Ini.ReadString( 'Sample', 'Name', '');
+
+      if Ini.ReadString('Method', 'Method','')='CT' then
+        CB_Method.ItemIndex :=0
+      else
+        CB_Method.ItemIndex :=1;
       Edit_FS.Text := Ini.ReadString('Method', 'FS_Num','0');
 
       Edit_BKInt.Text := IntToStr(Ini.ReadInteger( 'Proc_1', 'BK_Interval', 1050));
