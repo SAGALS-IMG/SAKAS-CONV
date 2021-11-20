@@ -666,8 +666,6 @@ object Form_Main: TForm_Main
     ScrollBars = ssVertical
     TabOrder = 3
     Zoom = 100
-    ExplicitTop = 777
-    ExplicitHeight = 77
   end
   object GroupBox3: TGroupBox
     Left = 0
@@ -965,7 +963,6 @@ object Form_Main: TForm_Main
       BevelOuter = bvNone
       Caption = 'Panel3'
       TabOrder = 1
-      ExplicitHeight = 137
       object CLB_File: TCheckListBox
         Left = 0
         Top = 0
@@ -981,7 +978,6 @@ object Form_Main: TForm_Main
         ParentFont = False
         TabOrder = 0
         OnClick = CLB_FileClick
-        ExplicitHeight = 137
       end
     end
   end
@@ -1002,8 +998,6 @@ object Form_Main: TForm_Main
     ParentColor = False
     ParentFont = False
     TabOrder = 4
-    ExplicitLeft = 14
-    ExplicitTop = 591
     object Label8: TLabel
       Left = 376
       Top = 148

@@ -289,9 +289,7 @@ begin
   BKNum := StrToInt(Edit_BKNum.Text);
   BKInt := StrToInt(Edit_BKInt.Text);
   FSN := StrToInt(Edit_FS.Text);
-  Pro := StrToInt(Edit_ImgN.Text);
-  if CB_Method.ItemIndex=1 then
-    Pro := Pro div FSN;
+  Pro := StrToInt(Edit_ImgN.Text) div FSN;
   if Edit_BKFN1.Text='' then
     Pro := Pro - ((Pro div BKInt) +1)*BKNum;
 end;
@@ -419,10 +417,15 @@ begin
       Label_Sample_Name.Caption :=Ini.ReadString( 'Sample', 'Name', '');
 
       if Ini.ReadString('Method', 'Method','')='CT' then
-        CB_Method.ItemIndex :=0
+      begin
+        CB_Method.ItemIndex :=0;
+        Edit_FS.Text := '1';
+      end
       else
+      begin
         CB_Method.ItemIndex :=1;
-      Edit_FS.Text := Ini.ReadString('Method', 'FS_Num','0');
+        Edit_FS.Text := Ini.ReadString('Method', 'FS_Num','1');
+      end;
 
       Edit_BKInt.Text := IntToStr(Ini.ReadInteger( 'Proc_1', 'BK_Interval', 1050));
       Edit_BKNum.Text := IntToStr(Ini.ReadInteger( 'Proc_1', 'BK_Image_Num', 100));
@@ -536,11 +539,6 @@ begin
           BKData[0,j,i] := ImgPV.PData[j,i];
     end;
 
-    for m:=1 to (Pro div BKInt)+1 do
-      for j:=0 to ImgPV.PH-1 do
-        for i:=0 to ImgPV.PW-1 do
-          BKData[m,j,i] := BKData[0,j,i];
-
     if Edit_BKFN2.Text<>'' then
     begin
       TmpStr := 'BK 2 ';
@@ -573,6 +571,18 @@ begin
           for i:=0 to ImgPV.PW-1 do
             BKData[1,j,i] := ImgPV.PData[j,i];
       end;
+
+      for m:=2 to (Pro div BKInt)+1 do
+        for j:=0 to ImgPV.PH-1 do
+          for i:=0 to ImgPV.PW-1 do
+            BKData[m,j,i] := BKData[0,j,i];
+    end
+    else
+    begin
+      for m:=1 to (Pro div BKInt)+1 do
+        for j:=0 to ImgPV.PH-1 do
+          for i:=0 to ImgPV.PW-1 do
+            BKData[m,j,i] := BKData[0,j,i];
     end;
   end
   else
@@ -1051,7 +1061,7 @@ begin
       BB_Prev_NImgClick(Sender);
       Inc(kk);
       SB.SimpleText := 'Projection : '+kk.ToString;
-      Memo.Lines.Add('Image No. '+k.ToString+ ' Projection : '+kk.ToString);
+      Memo.Lines.Add('Image No. '+k.ToString+ ' Projection No. : '+kk.ToString);
       Application.ProcessMessages;
       if not(Go) then
         exit;
