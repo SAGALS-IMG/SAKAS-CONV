@@ -155,7 +155,7 @@ var
 
   ImgPV : TForm_PW;
 
-  BKInt, Pro, BKNum, OffImg, FSN : longint;
+  BKInt, Pro, BKNum, OffImg, FSN, ImgN : longint;
   BKData : array[0..8] of TData;
   NData, TmpData, SSData, DARKData : TData;
   Go : boolean;
@@ -289,9 +289,13 @@ begin
   BKNum := StrToInt(Edit_BKNum.Text);
   BKInt := StrToInt(Edit_BKInt.Text);
   FSN := StrToInt(Edit_FS.Text);
-  Pro := StrToInt(Edit_ImgN.Text) div FSN;
-  if Edit_BKFN1.Text='' then
-    Pro := Pro - ((Pro div BKInt) +1)*BKNum;
+  Pro := StrToInt(Edit_PRo.Text);
+  ImgN := StrToInt(Edit_ImgN.Text);
+  if BKInt =0 then
+  begin
+    CB_BKOnly.Checked := true;
+    BKInt := ImgN+1;
+  end;
 end;
 
 
@@ -374,7 +378,11 @@ begin
         Ini.WriteInteger( 'Proc_2', 'Width', StrToInt(LEdit_PW.Text))
     end;
 
-    Ini.WriteInteger( 'Proc_2', 'Height', Pro);
+    if Edit_BKFN1.Text='' then
+      Ini.WriteInteger( 'Proc_2', 'Height', ImgN)
+    else
+      Ini.WriteInteger( 'Proc_2', 'Height', ImgN-(ImgN div BKInt+1)*BKNum);
+
     Ini.WriteInteger( 'Proc_2', 'Offset_X', StrToInt(LEdit_OffX.Text));
     Ini.WriteInteger( 'Proc_2', 'Offset_Y', StrToInt(LEdit_OffY.Text));
 
@@ -504,7 +512,7 @@ var
   i, j, kk,m,n :longint;
   TmpStr : string;
 begin
-  for m:=0 to (Pro div BKInt) do
+  for m:=0 to (ImgN div BKInt) do
     for j:=0 to ImgPV.PH-1 do
       for i:=0 to ImgPV.PW-1 do
         BKData[m,j,i] := 0;
@@ -557,7 +565,7 @@ begin
       for j:=0 to ImgPV.PH-1 do
         for i:=0 to ImgPV.PW-1 do
           BKData[1,j,i] := BKData[1,j,i]/BKNum;
-      for m:=2 to (Pro div BKInt)+1 do
+      for m:=2 to (ImgN div BKInt)+1 do
         for j:=0 to ImgPV.PH-1 do
           for i:=0 to ImgPV.PW-1 do
             BKData[m,j,i] := BKData[1,j,i];
@@ -572,14 +580,14 @@ begin
             BKData[1,j,i] := ImgPV.PData[j,i];
       end;
 
-      for m:=2 to (Pro div BKInt)+1 do
+      for m:=2 to (ImgN div BKInt)+1 do
         for j:=0 to ImgPV.PH-1 do
           for i:=0 to ImgPV.PW-1 do
             BKData[m,j,i] := BKData[0,j,i];
     end
     else
     begin
-      for m:=1 to (Pro div BKInt)+1 do
+      for m:=1 to (ImgN div BKInt)+1 do
         for j:=0 to ImgPV.PH-1 do
           for i:=0 to ImgPV.PW-1 do
             BKData[m,j,i] := BKData[0,j,i];
@@ -588,7 +596,7 @@ begin
   else
   begin
     TmpStr := '';
-    for m:=0 to (Pro div BKInt) do
+    for m:=0 to (ImgN div BKInt) do
     begin
       TmpStr := TmpStr+' BK '+m.ToString+' : ';
       for kk:=0 to BKNum-1 do
@@ -621,12 +629,12 @@ begin
 
     for j:=0 to ImgPV.PH-1 do
       for i:=0 to ImgPV.PW-1 do
-        BKData[(Pro div BKInt)+1,j,i] := BKData[(Pro div BKInt),j,i];
+        BKData[(ImgN div BKInt)+1,j,i] := BKData[(ImgN div BKInt),j,i];
   end;
   if CB_BKOnly.Checked then
   begin
     n := UD_PrevBK.Position;
-    for m:=0 to (Pro div BKInt)+1 do
+    for m:=0 to (ImgN div BKInt)+1 do
     begin
       if m<>n then
         for j:=0 to ImgPV.PH-1 do
@@ -727,7 +735,7 @@ begin
     MySin[i] := Sin(i/FSN*2*Pi);
   end;
 
-  for m:=0 to (Pro div BKInt) do
+  for m:=0 to (ImgN div BKInt) do
   begin
     for j:=0 to ImgPV.PH-1 do
       for i:=0 to ImgPV.PW-1 do
@@ -802,7 +810,7 @@ begin
           BKABS[k,j,i] := BKABS[m,j,i];
         end;
     end;
-    for k:=m+1 to Pro div BKInt+1 do
+    for k:=m+1 to ImgN div BKInt+1 do
     begin
       for j:=0 to ImgPV.PH-1 do
         for i:=0 to ImgPV.PW-1 do
@@ -815,8 +823,8 @@ begin
   end
   else
   begin
-    m:= Pro div BKInt+1;
-    for k:=m to Pro div BKInt+1 do
+    m:= ImgN div BKInt+1;
+    for k:=m to ImgN div BKInt+1 do
     begin
       for j:=0 to ImgPV.PH-1 do
         for i:=0 to ImgPV.PW-1 do
@@ -1230,7 +1238,7 @@ end;
 
 procedure TForm_Main.BB_MakeSinoClick(Sender: TObject);
 var
-  i,j,k,kk,lPW, AvR:longint;
+  i,j,k,kk,lPW, AvR, lPro:longint;
   FS : TFileStream;
   lDData : array[0..4000] of double;
   BFN, BDir1, BDir2, lFN : string;
@@ -1253,17 +1261,22 @@ begin
   BDir2 := ExtractFilePath(BFN)+TPath.GetFileNameWithoutExtension(BFN)+'_cal\sino\';
   lFN :=TPath.GetFileNameWithoutExtension(BFN);
 
+  if Edit_BKFN1.Text<>'' then
+    lPRo := ImgN
+  else
+    lPRo := ImgN-((ImgN div BKInt)+1)*BKNum;
+
   for k:=StrToInt(Edit_SinoST.Text) to StrToInt(Edit_SinoEnd.Text) do
   begin
     if CB_Method.ItemIndex = 0 then
     begin
-      for j:=0 to Pro-1 do
+      for j:=0 to lPro-1 do
         for i:=0 to lPW-1 do
           SSData[j,i] := 0;
 
       for kk:=-AvR+k to k+AvR do
       begin
-        for j:=0 to Pro-1 do
+        for j:=0 to lPro-1 do
         begin
           FS := TFileStream.Create(BDir1+lFN+'_'+IntToStr(j),fmOpenRead);
           FS.Position := Int64(lPW*kk*8);
@@ -1272,24 +1285,24 @@ begin
             NData[j,i] := lDData[i];
           FS.Free;
         end;
-        for j:=0 to Pro-1 do
+        for j:=0 to lPro-1 do
           for i:=0 to lPW-1 do
             SSData[j,i] := SSData[j,i]+((AvR+1)-Abs(kk-k))*NData[j,i];
       end;
 
       if AvR<>0 then
-        for j:=0 to Pro-1 do
+        for j:=0 to lPro-1 do
           for i:=0 to lPW-1 do
             SSData[j,i] := SSData[j,i]/4;
 
       ImgPV.PW := lPW;
-      ImgPV.PH := Pro;
+      ImgPV.PH := lPro;
       ImgPV.PData := SSData;
       ImgPV.Show;
       ImgPV.Draw_Data(Sender);
 
       FS := TFileStream.Create(BDir2+lFN+'_s_'+IntToStr(k),fmCreate);
-      for j:=0 to Pro-1 do
+      for j:=0 to lPro-1 do
       begin
         for i:=0 to lPW-1 do
           lDData[i] := SSData[j,i] ;
@@ -1305,7 +1318,7 @@ begin
     end
     else
     begin
-      for j:=0 to Pro-1 do
+      for j:=0 to lPro-1 do
       begin
         FS := TFileStream.Create(BDir1+lFN+'_'+IntToStr(j)+'.ph',fmOpenRead);
         FS.Position := Int64(lPW*k*8);
@@ -1316,13 +1329,13 @@ begin
       end;
 
       ImgPV.PW := lPW;
-      ImgPV.PH := Pro;
+      ImgPV.PH := lPro;
       ImgPV.PData := PhData;
       ImgPV.Show;
       ImgPV.Draw_Data(Sender);
 
       FS := TFileStream.Create(BDir2+lFN+'_s_'+IntToStr(k)+'.ph',fmCreate);
-      for j:=0 to Pro-1 do
+      for j:=0 to lPro-1 do
       begin
         for i:=0 to lPW-1 do
           lDData[i] := PhData[j,i] ;
@@ -1330,7 +1343,7 @@ begin
       end;
       FS.Free;
 
-      for j:=0 to Pro-1 do
+      for j:=0 to lPro-1 do
       begin
         FS := TFileStream.Create(BDir1+lFN+'_'+IntToStr(j)+'.amp',fmOpenRead);
         FS.Position := Int64(lPW*k*8);
@@ -1341,7 +1354,7 @@ begin
       end;
 
       FS := TFileStream.Create(BDir2+lFN+'_s_'+IntToStr(k)+'.amp',fmCreate);
-      for j:=0 to Pro-1 do
+      for j:=0 to lPro-1 do
       begin
         for i:=0 to lPW-1 do
           lDData[i] := AmpData[j,i] ;
@@ -1349,7 +1362,7 @@ begin
       end;
       FS.Free;
 
-      for j:=0 to Pro-1 do
+      for j:=0 to lPro-1 do
       begin
         FS := TFileStream.Create(BDir1+lFN+'_'+IntToStr(j)+'.abs',fmOpenRead);
         FS.Position := Int64(lPW*k*8);
@@ -1359,7 +1372,7 @@ begin
         FS.Free;
       end;
       FS := TFileStream.Create(BDir2+lFN+'_s_'+IntToStr(k)+'.abs',fmCreate);
-      for j:=0 to Pro-1 do
+      for j:=0 to lPro-1 do
       begin
         for i:=0 to lPW-1 do
           lDData[i] := AbsData[j,i] ;
