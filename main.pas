@@ -449,6 +449,7 @@ begin
       if Ini.SectionExists('Proc_2') then
       begin
         RB_Proc2.Checked := true;
+        RB_Compled.Checked:=false;
 
         if Ini.ReadString( 'Proc_2', 'Status','')='Completed' then
           RB_Compled.Checked:=true;
