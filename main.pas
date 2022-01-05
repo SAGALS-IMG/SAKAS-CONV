@@ -510,7 +510,7 @@ end;
 
 procedure TForm_Main.ABS_BK(Sender: TObject);
 var
-  i, j, kk,m,n :longint;
+  i, j, kk,m,n, BKn :longint;
   TmpStr : string;
 begin
   for m:=0 to (ImgN div BKInt) do
@@ -520,6 +520,7 @@ begin
 
   if Edit_BKFN1.Text<>'' then
   begin
+    UD_PrevBK.Max := 1;
     TmpStr := 'BK1 : ';
     for kk:=0 to BKNum-1 do
     begin
@@ -550,6 +551,7 @@ begin
 
     if Edit_BKFN2.Text<>'' then
     begin
+      UD_PrevBK.Max := 2;
       TmpStr := 'BK 2 ';
       for kk:=0 to BKNum-1 do
       begin
@@ -597,7 +599,13 @@ begin
   else
   begin
     TmpStr := '';
-    for m:=0 to (ImgN div BKInt) do
+    if ((ImgN-BKNum) mod (BKNum+BKInt)) = 0 then
+      BKn := (ImgN-BKNum) div (BKNum+BKInt)
+    else
+      BKn := (ImgN-BKNum) div (BKNum+BKInt)+1;
+
+    UD_PrevBK.Max := Bkn+1;
+    for m:=0 to Bkn-1 do
     begin
       TmpStr := TmpStr+' BK '+m.ToString+' : ';
       for kk:=0 to BKNum-1 do
@@ -628,14 +636,47 @@ begin
       TmpStr := TmpStr + #13+#10;
     end;
 
+    TmpStr := TmpStr+' BK '+Bkn.ToString+' : ';
+    for kk:=0 to BKNum-1 do
+    begin
+      ImgPV.UD_TPro.Position := ImgN-kk-1;
+      ImgPV.Load_WORDData(Edit_FN.Text,Sender);
+      for j:=0 to ImgPV.PH-1 do
+        for i:=0 to ImgPV.PW-1 do
+          BKData[Bkn,j,i] := BKData[BKn,j,i]+ImgPV.IData[j,i];
+      TmpStr := TmpStr+' '+ImgPV.UD_TPro.Position.ToString;
+      Application.ProcessMessages;
+      Memo.Text := TmpStr;
+    end;
+
     for j:=0 to ImgPV.PH-1 do
       for i:=0 to ImgPV.PW-1 do
-        BKData[(ImgN div BKInt)+1,j,i] := BKData[(ImgN div BKInt),j,i];
+        BKData[Bkn,j,i] := BKData[BKn,j,i]/BKNum;
+
+    if CB_Med.Checked then
+    begin
+      for j:=0 to ImgPV.PH-1 do
+        for i:=0 to ImgPV.PW-1 do
+          ImgPV.PData[j,i] := BKData[Bkn,j,i];
+      ImgPV.Median_Img(ImgPV.PData);
+      for j:=0 to ImgPV.PH-1 do
+        for i:=0 to ImgPV.PW-1 do
+          BKData[Bkn,j,i] := ImgPV.PData[j,i];
+    end;
+    TmpStr := TmpStr + #13+#10;
+
+    for j:=0 to ImgPV.PH-1 do
+      for i:=0 to ImgPV.PW-1 do
+        BKData[BKn+1,j,i] := BKData[BKn,j,i];
   end;
+
+
+
+
   if CB_BKOnly.Checked then
   begin
     n := UD_PrevBK.Position;
-    for m:=0 to (ImgN div BKInt)+1 do
+    for m:=0 to BKn+1 do
     begin
       if m<>n then
         for j:=0 to ImgPV.PH-1 do
