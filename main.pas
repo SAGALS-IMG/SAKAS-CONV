@@ -378,7 +378,7 @@ begin
         Ini.WriteInteger( 'Proc_2', 'Width', StrToInt(LEdit_PW.Text))
     end;
 
-    if Edit_BKFN1.Text='' then
+    if Edit_BKFN1.Text<>'' then
       Ini.WriteInteger( 'Proc_2', 'Height', ImgN)
     else
       Ini.WriteInteger( 'Proc_2', 'Height', ImgN-(ImgN div BKInt+1)*BKNum);
