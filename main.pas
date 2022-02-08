@@ -1101,7 +1101,8 @@ begin
 
   kk:=-1;
   lPro := StrToInt(Edit_ImgN.Text);
-
+  if CB_Method.ItemIndex = 1 then
+    lPro := (lPro-FSN*BKNum) div FSN;
   for k:=0 to lPro-1 do
   begin
     if (((k mod (BKInt+BKNum))>=BKNum) or (Edit_BKFN1.Text<>'')) then
@@ -1303,10 +1304,11 @@ begin
   BDir2 := ExtractFilePath(BFN)+TPath.GetFileNameWithoutExtension(BFN)+'_cal\sino\';
   lFN :=TPath.GetFileNameWithoutExtension(BFN);
 
-  if Edit_BKFN1.Text<>'' then
-    lPRo := ImgN
-  else
-    lPRo := ImgN-((ImgN div BKInt)+1)*BKNum;
+//  if Edit_BKFN1.Text<>'' then
+//    lPRo := ImgN
+//  else
+//    lPRo := ImgN-((ImgN div BKInt)+1)*BKNum;
+  lPro := StrToInt(Edit_Pro.Text);
 
   for k:=StrToInt(Edit_SinoST.Text) to StrToInt(Edit_SinoEnd.Text) do
   begin

@@ -1279,7 +1279,7 @@ object Form_Main: TForm_Main
       TabOrder = 16
     end
     object BB_MakeSino: TBitBtn
-      Left = 208
+      Left = 209
       Top = 114
       Width = 85
       Height = 25
