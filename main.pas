@@ -777,7 +777,7 @@ begin
     MySin[i] := Sin(i/FSN*2*Pi);
   end;
 
-  for m:=0 to (ImgN div BKInt) do
+  for m:=0 to (ImgN div (BKInt*FSN)) do
   begin
     for j:=0 to ImgPV.PH-1 do
       for i:=0 to ImgPV.PW-1 do
@@ -865,15 +865,15 @@ begin
   end
   else
   begin
-    m:= ImgN div BKInt+1;
-    for k:=m to ImgN div BKInt+1 do
+    m:= ImgN div (BKInt*FSN);
+    for k:=m+1 to m+1 do
     begin
       for j:=0 to ImgPV.PH-1 do
         for i:=0 to ImgPV.PW-1 do
         begin
-          BKRe[k,j,i] := BKRe[m-1,j,i];
-          BKIm[k,j,i] := BKIm[m-1,j,i];
-          BKABS[k,j,i] := BKABS[m-1,j,i];
+          BKRe[k,j,i] := BKRe[m,j,i];
+          BKIm[k,j,i] := BKIm[m,j,i];
+          BKABS[k,j,i] := BKABS[m,j,i];
         end;
     end;
   end;
