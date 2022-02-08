@@ -381,7 +381,12 @@ begin
     if Edit_BKFN1.Text<>'' then
       Ini.WriteInteger( 'Proc_2', 'Height', ImgN)
     else
-      Ini.WriteInteger( 'Proc_2', 'Height', ImgN-(ImgN div BKInt+1)*BKNum);
+    begin
+      if CB_Method.ItemIndex = 0 then
+        Ini.WriteInteger( 'Proc_2', 'Height', ImgN-(ImgN div BKInt+1)*BKNum)
+      else
+        Ini.WriteInteger( 'Proc_2', 'Height', (ImgN div FSN)-((ImgN div (BKInt*FSN))+1)*BKNum);
+    end;
 
     Ini.WriteInteger( 'Proc_2', 'Offset_X', StrToInt(LEdit_OffX.Text));
     Ini.WriteInteger( 'Proc_2', 'Offset_Y', StrToInt(LEdit_OffY.Text));
@@ -1304,11 +1309,14 @@ begin
   BDir2 := ExtractFilePath(BFN)+TPath.GetFileNameWithoutExtension(BFN)+'_cal\sino\';
   lFN :=TPath.GetFileNameWithoutExtension(BFN);
 
-//  if Edit_BKFN1.Text<>'' then
-//    lPRo := ImgN
-//  else
-//    lPRo := ImgN-((ImgN div BKInt)+1)*BKNum;
-  lPro := StrToInt(Edit_Pro.Text);
+  if Edit_BKFN1.Text<>'' then
+    lPRo := ImgN
+  else
+    if CB_Method.ItemIndex = 0 then
+      lPRo := ImgN-((ImgN div BKInt)+1)*BKNum
+    else
+      lPro := (ImgN div FSN)-((ImgN div (BKInt*FSN))+1)*BKNum;
+//  lPro := StrToInt(Edit_Pro.Text);
 
   for k:=StrToInt(Edit_SinoST.Text) to StrToInt(Edit_SinoEnd.Text) do
   begin
