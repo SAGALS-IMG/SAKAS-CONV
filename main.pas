@@ -772,7 +772,7 @@ end;
 
 procedure TForm_Main.PH_BK(Sender: TObject);
 var
-  i, j, k, m, km, TmpInt :longint;
+  i, j, k, m, km, TmpInt, IteMax :longint;
   TmpBKRe,TmpBKIm, TmpBKAbs,a,b : double;
   lStr, TmpStr : string;
 begin
@@ -782,16 +782,78 @@ begin
     MySin[i] := Sin(i/FSN*2*Pi);
   end;
 
-  for m:=0 to (ImgN div (BKInt*FSN)) do
+  if Edit_BKFN1.Text = '' then
+  begin
+    if CB_BKOnly.Checked then
+      IteMax := 0
+    else
+      IteMax := (ImgN div (BKInt*FSN));
+    for m:=0 to IteMax do
+    begin
+      for j:=0 to ImgPV.PH-1 do
+        for i:=0 to ImgPV.PW-1 do
+        begin
+          BKRe[m,j,i] := 0;
+          BKIm[m,j,i] := 0;
+          BKABS[m,j,i] := 0;
+          BKPh[m,j,i] := 0;
+          BKAmp[m,j,i] := 0;
+        end;
+
+      for km:=1 to BKNum do
+      begin
+        TmpStr := '';
+        for k:=0 to FSN-1 do
+        begin
+          ImgPV.UD_TPro.Position := Int64((BKInt+BKNum)*FSN*m+k+(km-1)*FSN);
+          TmpStr := TmpStr+' '+ImgPV.UD_TPro.Position.ToString;
+          ImgPV.Load_WORDData(Edit_FN.Text,Sender);
+          for j:=0 to ImgPV.PH-1 do
+            for i:=0 to ImgPV.PW-1 do
+              OrigIData[k,j,i] :=ImgPV.IData[j,i] ;
+        end;
+        Memo.Lines.Add(TmpStr);
+
+        for j:=0 to ImgPV.PH-1 do
+          for i:=0 to ImgPV.PW-1 do
+          begin
+            TmpBKRe := 0;
+            TmpBKIm := 0;
+            TmpBKAbs := 0;
+
+            for k:=0 to FSN-1 do
+            begin
+              TmpBKIm := TmpBKIm + OrigIData[k,j,i]*MySin[k];
+              TmpBKRe := TmpBKRe + OrigIData[k,j,i]*MyCos[k];
+              TmpBKAbs  := TmpBKAbs  + OrigIData[k,j,i];
+            end;
+            BKRe[m,j,i] := BKRe[m,j,i]+TmpBKRe;
+            BKIm[m,j,i] := BKIm[m,j,i]+TmpBKIm;
+            BKABS[m,j,i] := BKABS[m,j,i]+TmpBKAbs;
+          end;
+      end;
+
+      for j:=0 to ImgPV.PH-1 do
+        for i:=0 to ImgPV.PW-1 do
+        begin
+          BKRe[m,j,i] := BKRe[m,j,i]/BKNum;
+          BKIm[m,j,i] := BKIm[m,j,i]/BKNum;
+          BKABS[m,j,i] := BKABS[m,j,i]/BKNum;
+          BKPh[m,j,i] := ArcTan2(BKIm[m,j,i],BKRe[m,j,i]);
+          BKAmp[m,j,i] := Sqrt(Sqr(BKIm[m,j,i]+Sqr(BKRe[m,j,i])));
+        end;
+    end;
+  end
+  else
   begin
     for j:=0 to ImgPV.PH-1 do
       for i:=0 to ImgPV.PW-1 do
       begin
-        BKRe[m,j,i] := 0;
-        BKIm[m,j,i] := 0;
-        BKABS[m,j,i] := 0;
-        BKPh[m,j,i] := 0;
-        BKAmp[m,j,i] := 0;
+        BKRe[0,j,i] := 0;
+        BKIm[0,j,i] := 0;
+        BKABS[0,j,i] := 0;
+        BKPh[0,j,i] := 0;
+        BKAmp[0,j,i] := 0;
       end;
 
     for km:=1 to BKNum do
@@ -799,10 +861,9 @@ begin
       TmpStr := '';
       for k:=0 to FSN-1 do
       begin
-        ImgPV.UD_TPro.Position := Int64((BKInt+BKNum)*FSN*m+k+(km-1)*FSN);
+        ImgPV.UD_TPro.Position := Int64(k+(km-1)*FSN);
         TmpStr := TmpStr+' '+ImgPV.UD_TPro.Position.ToString;
-//        Memo.Lines.Add(ImgPV.UD_TPro.Position.ToString);
-        ImgPV.Load_WORDData(Edit_FN.Text,Sender);
+        ImgPV.Load_WORDData(Edit_BKFN1.Text,Sender);
         for j:=0 to ImgPV.PH-1 do
           for i:=0 to ImgPV.PW-1 do
             OrigIData[k,j,i] :=ImgPV.IData[j,i] ;
@@ -822,27 +883,22 @@ begin
             TmpBKRe := TmpBKRe + OrigIData[k,j,i]*MyCos[k];
             TmpBKAbs  := TmpBKAbs  + OrigIData[k,j,i];
           end;
-          BKRe[m,j,i] := BKRe[m,j,i]+TmpBKRe;
-          BKIm[m,j,i] := BKIm[m,j,i]+TmpBKIm;
-          BKABS[m,j,i] := BKABS[m,j,i]+TmpBKAbs;
-          //BKS[m,j,i] := BKS[m,j,i]+ArcTan2(TmpBKIm,TmpBKRe);
-          //BKAmp[m,j,i] := BKAmp[m,j,i]+Sqrt(Sqr(TmpBKIm)+Sqr(TmpBKRe));
+          BKRe[0,j,i] := BKRe[0,j,i]+TmpBKRe;
+          BKIm[0,j,i] := BKIm[0,j,i]+TmpBKIm;
+          BKABS[0,j,i] := BKABS[0,j,i]+TmpBKAbs;
         end;
     end;
 
     for j:=0 to ImgPV.PH-1 do
       for i:=0 to ImgPV.PW-1 do
       begin
-        BKRe[m,j,i] := BKRe[m,j,i]/BKNum;
-        BKIm[m,j,i] := BKIm[m,j,i]/BKNum;
-        BKABS[m,j,i] := BKABS[m,j,i]/BKNum;
-        //BKS[m,j,i] := BKS[m,j,i]/BKN;
-        //BKAmp[m,j,i] := BKAmp[m,j,i]/BKN;
-        BKPh[m,j,i] := ArcTan2(BKIm[m,j,i],BKRe[m,j,i]);
-        BKAmp[m,j,i] := Sqrt(Sqr(BKIm[m,j,i]+Sqr(BKRe[m,j,i])));
+        BKRe[0,j,i] := BKRe[0,j,i]/BKNum;
+        BKIm[0,j,i] := BKIm[0,j,i]/BKNum;
+        BKABS[0,j,i] := BKABS[0,j,i]/BKNum;
+        BKPh[0,j,i] := ArcTan2(BKIm[0,j,i],BKRe[0,j,i]);
+        BKAmp[0,j,i] := Sqrt(Sqr(BKIm[0,j,i]+Sqr(BKRe[0,j,i])));
       end;
   end;
-
 
   if CB_BKOnly.Checked then
   begin
