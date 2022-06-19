@@ -2,8 +2,8 @@ object Form_Main: TForm_Main
   Left = 0
   Top = 0
   Caption = 'SAKAS Conv'
-  ClientHeight = 873
-  ClientWidth = 465
+  ClientHeight = 919
+  ClientWidth = 437
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,17 +18,18 @@ object Form_Main: TForm_Main
   object Splitter1: TSplitter
     Left = 0
     Top = 209
-    Width = 465
+    Width = 437
     Height = 3
     Cursor = crVSplit
     Align = alTop
     ExplicitLeft = 8
     ExplicitTop = 216
+    ExplicitWidth = 465
   end
   object SB: TStatusBar
     Left = 0
-    Top = 854
-    Width = 465
+    Top = 900
+    Width = 437
     Height = 19
     Panels = <>
     SimplePanel = True
@@ -36,8 +37,8 @@ object Form_Main: TForm_Main
   object GroupBox1: TGroupBox
     Left = 0
     Top = 212
-    Width = 465
-    Height = 384
+    Width = 437
+    Height = 378
     Align = alTop
     Caption = 'Tag Info.'
     Color = 15135487
@@ -54,14 +55,14 @@ object Form_Main: TForm_Main
     object Shape1: TShape
       Left = 29
       Top = 231
-      Width = 284
+      Width = 268
       Height = 138
       Brush.Color = clCream
     end
     object Shape2: TShape
       Left = 135
       Top = 283
-      Width = 164
+      Width = 157
       Height = 77
       Brush.Color = clMoneyGreen
     end
@@ -73,7 +74,7 @@ object Form_Main: TForm_Main
       Caption = 'File Name'
     end
     object Label10: TLabel
-      Left = 326
+      Left = 303
       Top = 325
       Width = 47
       Height = 16
@@ -86,7 +87,7 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 326
+      Left = 303
       Top = 242
       Width = 66
       Height = 16
@@ -99,13 +100,13 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object Label9: TLabel
-      Left = 326
+      Left = 303
       Top = 352
       Width = 71
       Height = 16
       Caption = 'Offset Num'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clMaroon
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
@@ -138,7 +139,7 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 326
+      Left = 303
       Top = 270
       Width = 68
       Height = 16
@@ -151,7 +152,7 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 326
+      Left = 303
       Top = 297
       Width = 72
       Height = 16
@@ -164,7 +165,7 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object SB_FOpen: TSpeedButton
-      Left = 433
+      Left = 409
       Top = 47
       Width = 23
       Height = 22
@@ -186,7 +187,7 @@ object Form_Main: TForm_Main
       OnClick = SB_FOpenClick
     end
     object SB_FOOpen: TSpeedButton
-      Left = 433
+      Left = 409
       Top = 137
       Width = 23
       Height = 22
@@ -208,7 +209,7 @@ object Form_Main: TForm_Main
       OnClick = SB_FOOpenClick
     end
     object SB_BK1: TSpeedButton
-      Left = 433
+      Left = 409
       Top = 77
       Width = 23
       Height = 22
@@ -230,7 +231,7 @@ object Form_Main: TForm_Main
       OnClick = SB_BK1Click
     end
     object SB_BK2: TSpeedButton
-      Left = 433
+      Left = 409
       Top = 107
       Width = 23
       Height = 22
@@ -300,9 +301,9 @@ object Form_Main: TForm_Main
     object Label16: TLabel
       Left = 250
       Top = 170
-      Width = 130
+      Width = 71
       Height = 16
-      Caption = '--- Fringe scan num '
+      Caption = '--- FS num '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -311,8 +312,8 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object Label17: TLabel
-      Left = 326
-      Top = 212
+      Left = 303
+      Top = 214
       Width = 71
       Height = 16
       Caption = 'Image Num'
@@ -349,10 +350,23 @@ object Form_Main: TForm_Main
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Label18: TLabel
+      Left = 6
+      Top = 200
+      Width = 54
+      Height = 16
+      Caption = 'Skip Img'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object Edit_FN: TEdit
       Left = 74
       Top = 47
-      Width = 358
+      Width = 334
       Height = 24
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -364,7 +378,7 @@ object Form_Main: TForm_Main
       Text = 'D:\201708_HARL\08101100'
     end
     object Edit_BKNum: TEdit
-      Left = 409
+      Left = 386
       Top = 322
       Width = 46
       Height = 24
@@ -378,7 +392,7 @@ object Form_Main: TForm_Main
       Text = '100'
     end
     object Edit_Pro: TEdit
-      Left = 409
+      Left = 386
       Top = 239
       Width = 46
       Height = 24
@@ -394,7 +408,7 @@ object Form_Main: TForm_Main
     object Edit_OffFN: TEdit
       Left = 74
       Top = 137
-      Width = 358
+      Width = 334
       Height = 24
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -405,7 +419,7 @@ object Form_Main: TForm_Main
       TabOrder = 1
     end
     object Edit_DN: TEdit
-      Left = 409
+      Left = 386
       Top = 349
       Width = 46
       Height = 24
@@ -555,7 +569,7 @@ object Form_Main: TForm_Main
       TabOrder = 10
     end
     object Edit_Rot_angle: TEdit
-      Left = 409
+      Left = 386
       Top = 267
       Width = 46
       Height = 24
@@ -569,7 +583,7 @@ object Form_Main: TForm_Main
       Text = '1050'
     end
     object Edit_BKInt: TEdit
-      Left = 409
+      Left = 386
       Top = 294
       Width = 46
       Height = 24
@@ -585,7 +599,7 @@ object Form_Main: TForm_Main
     object Edit_BKFN2: TEdit
       Left = 74
       Top = 107
-      Width = 358
+      Width = 334
       Height = 24
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -596,9 +610,9 @@ object Form_Main: TForm_Main
       TabOrder = 15
     end
     object Edit_BKFN1: TEdit
-      Left = 74
-      Top = 77
-      Width = 358
+      Left = 66
+      Top = -222
+      Width = 334
       Height = 24
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -613,7 +627,6 @@ object Form_Main: TForm_Main
       Top = 167
       Width = 159
       Height = 24
-      ItemIndex = 0
       TabOrder = 17
       Text = 'Absorption'
       Items.Strings = (
@@ -621,7 +634,7 @@ object Form_Main: TForm_Main
         'Fringe Scan')
     end
     object Edit_FS: TEdit
-      Left = 386
+      Left = 362
       Top = 167
       Width = 46
       Height = 24
@@ -636,8 +649,8 @@ object Form_Main: TForm_Main
       Text = '3'
     end
     object Edit_ImgN: TEdit
-      Left = 409
-      Top = 209
+      Left = 386
+      Top = 211
       Width = 46
       Height = 24
       Font.Charset = DEFAULT_CHARSET
@@ -649,12 +662,26 @@ object Form_Main: TForm_Main
       TabOrder = 19
       Text = '1050'
     end
+    object Edit_Skip: TEdit
+      Left = 74
+      Top = 197
+      Width = 46
+      Height = 24
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 20
+      Text = '0'
+    end
   end
   object Memo: TRichEdit
     Left = 0
-    Top = 772
-    Width = 465
-    Height = 82
+    Top = 788
+    Width = 437
+    Height = 112
     Align = alClient
     Font.Charset = SHIFTJIS_CHARSET
     Font.Color = clWindowText
@@ -670,7 +697,7 @@ object Form_Main: TForm_Main
   object GroupBox3: TGroupBox
     Left = 0
     Top = 0
-    Width = 465
+    Width = 437
     Height = 209
     Align = alTop
     Caption = 'Tag Files'
@@ -687,7 +714,7 @@ object Form_Main: TForm_Main
     object Panel2: TPanel
       Left = 2
       Top = 18
-      Width = 461
+      Width = 433
       Height = 84
       Align = alTop
       BevelOuter = bvNone
@@ -699,7 +726,7 @@ object Form_Main: TForm_Main
       ParentFont = False
       TabOrder = 0
       object SB_Help: TSpeedButton
-        Left = 430
+        Left = 404
         Top = -3
         Width = 31
         Height = 31
@@ -750,7 +777,7 @@ object Form_Main: TForm_Main
         OnClick = SB_ViewInfoClick
       end
       object SB_TagList_Reload: TSpeedButton
-        Left = 407
+        Left = 381
         Top = 2
         Width = 23
         Height = 22
@@ -785,7 +812,7 @@ object Form_Main: TForm_Main
         ParentFont = False
       end
       object SB_Dir: TSpeedButton
-        Left = 381
+        Left = 355
         Top = 1
         Width = 23
         Height = 22
@@ -842,7 +869,7 @@ object Form_Main: TForm_Main
       object CB_Ext: TComboBox
         Left = 297
         Top = 0
-        Width = 74
+        Width = 58
         Height = 22
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -957,7 +984,7 @@ object Form_Main: TForm_Main
     object Panel3: TPanel
       Left = 2
       Top = 102
-      Width = 461
+      Width = 433
       Height = 105
       Align = alClient
       BevelOuter = bvNone
@@ -966,7 +993,7 @@ object Form_Main: TForm_Main
       object CLB_File: TCheckListBox
         Left = 0
         Top = 0
-        Width = 461
+        Width = 433
         Height = 105
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -983,9 +1010,9 @@ object Form_Main: TForm_Main
   end
   object GroupBox2: TGroupBox
     Left = 0
-    Top = 596
-    Width = 465
-    Height = 176
+    Top = 590
+    Width = 437
+    Height = 198
     Align = alTop
     Caption = 'Sino Cond.'
     Color = 14740960
@@ -999,8 +1026,8 @@ object Form_Main: TForm_Main
     ParentFont = False
     TabOrder = 4
     object Label8: TLabel
-      Left = 376
-      Top = 148
+      Left = 365
+      Top = 166
       Width = 29
       Height = 16
       Caption = 'Z Av.'
@@ -1012,8 +1039,8 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object Label5: TLabel
-      Left = 301
-      Top = 150
+      Left = 294
+      Top = 168
       Width = 12
       Height = 13
       Caption = #65374
@@ -1025,8 +1052,8 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 214
-      Top = 148
+      Left = 213
+      Top = 166
       Width = 31
       Height = 16
       Caption = 'Slice '
@@ -1038,8 +1065,8 @@ object Form_Main: TForm_Main
       ParentFont = False
     end
     object BB_Open: TBitBtn
-      Left = 8
-      Top = 21
+      Left = 6
+      Top = 52
       Width = 90
       Height = 25
       Caption = 'Open Image'
@@ -1053,8 +1080,8 @@ object Form_Main: TForm_Main
       OnClick = BB_OpenClick
     end
     object BB_PrevBK: TBitBtn
-      Left = 8
-      Top = 52
+      Left = 6
+      Top = 83
       Width = 90
       Height = 25
       Caption = 'Load BK'
@@ -1068,8 +1095,8 @@ object Form_Main: TForm_Main
       OnClick = BB_PrevBKClick
     end
     object Edit_PrevBK: TEdit
-      Left = 160
-      Top = 53
+      Left = 158
+      Top = 84
       Width = 20
       Height = 24
       Font.Charset = DEFAULT_CHARSET
@@ -1082,8 +1109,8 @@ object Form_Main: TForm_Main
       Text = '0'
     end
     object UD_PrevBK: TUpDown
-      Left = 180
-      Top = 53
+      Left = 178
+      Top = 84
       Width = 16
       Height = 24
       Associate = Edit_PrevBK
@@ -1092,8 +1119,8 @@ object Form_Main: TForm_Main
       OnClick = UD_PrevBKClick
     end
     object Edit_DBK: TEdit
-      Left = 160
-      Top = 83
+      Left = 158
+      Top = 114
       Width = 36
       Height = 24
       Font.Charset = DEFAULT_CHARSET
@@ -1106,8 +1133,8 @@ object Form_Main: TForm_Main
       Text = '95'
     end
     object CB_Damy: TCheckBox
-      Left = 109
-      Top = 87
+      Left = 107
+      Top = 118
       Width = 48
       Height = 17
       Caption = 'Dumy'
@@ -1122,8 +1149,8 @@ object Form_Main: TForm_Main
       TabOrder = 8
     end
     object BB_DARK: TBitBtn
-      Left = 8
-      Top = 83
+      Left = 6
+      Top = 114
       Width = 90
       Height = 25
       Caption = 'Load Offset'
@@ -1138,8 +1165,8 @@ object Form_Main: TForm_Main
       OnClick = BB_DARKClick
     end
     object BB_Prev_NImg: TBitBtn
-      Left = 8
-      Top = 114
+      Left = 6
+      Top = 145
       Width = 90
       Height = 25
       Caption = 'Check Img'
@@ -1153,8 +1180,8 @@ object Form_Main: TForm_Main
       OnClick = BB_Prev_NImgClick
     end
     object Edit_PrevNImg: TEdit
-      Left = 109
-      Top = 114
+      Left = 107
+      Top = 145
       Width = 70
       Height = 24
       Font.Charset = DEFAULT_CHARSET
@@ -1167,8 +1194,8 @@ object Form_Main: TForm_Main
       Text = '0'
     end
     object UD_PrevNImg: TUpDown
-      Left = 179
-      Top = 114
+      Left = 177
+      Top = 145
       Width = 16
       Height = 24
       Associate = Edit_PrevNImg
@@ -1177,8 +1204,8 @@ object Form_Main: TForm_Main
       OnClick = UD_PrevNImgClick
     end
     object CB_Ln2: TCheckBox
-      Left = 114
-      Top = 149
+      Left = 112
+      Top = 175
       Width = 51
       Height = 17
       Caption = '-Ln'
@@ -1193,8 +1220,8 @@ object Form_Main: TForm_Main
       TabOrder = 13
     end
     object CB_WOBK: TCheckBox
-      Left = 16
-      Top = 149
+      Left = 14
+      Top = 175
       Width = 67
       Height = 17
       Caption = 'W/O BK'
@@ -1237,9 +1264,9 @@ object Form_Main: TForm_Main
       OnClick = BB_STop2Click
     end
     object CB_SwapXY: TCheckBox
-      Left = 300
-      Top = 85
-      Width = 66
+      Left = 215
+      Top = 106
+      Width = 69
       Height = 21
       Caption = 'XY Swap'
       Font.Charset = DEFAULT_CHARSET
@@ -1253,9 +1280,9 @@ object Form_Main: TForm_Main
     object CB_Bin: TCheckBox
       Left = 215
       Top = 87
-      Width = 62
+      Width = 91
       Height = 17
-      Caption = 'Binning'
+      Caption = 'Binning(2x2)'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -1265,11 +1292,11 @@ object Form_Main: TForm_Main
       TabOrder = 14
     end
     object CB_Med: TCheckBox
-      Left = 380
+      Left = 315
       Top = 87
-      Width = 62
+      Width = 105
       Height = 17
-      Caption = 'Median'
+      Caption = 'Median fileter'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -1279,8 +1306,8 @@ object Form_Main: TForm_Main
       TabOrder = 16
     end
     object BB_MakeSino: TBitBtn
-      Left = 209
-      Top = 114
+      Left = 208
+      Top = 132
       Width = 85
       Height = 25
       Caption = 'Make Sino'
@@ -1294,8 +1321,8 @@ object Form_Main: TForm_Main
       OnClick = BB_MakeSinoClick
     end
     object BB_STOP: TBitBtn
-      Left = 300
-      Top = 114
+      Left = 299
+      Top = 132
       Width = 85
       Height = 25
       Caption = 'STOP'
@@ -1309,9 +1336,9 @@ object Form_Main: TForm_Main
       OnClick = BB_STOPClick
     end
     object Edit_SinoEnd: TEdit
-      Left = 319
-      Top = 145
-      Width = 46
+      Left = 310
+      Top = 163
+      Width = 42
       Height = 24
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -1323,9 +1350,9 @@ object Form_Main: TForm_Main
       Text = '200'
     end
     object Edit_SinoST: TEdit
-      Left = 246
-      Top = 145
-      Width = 46
+      Left = 245
+      Top = 163
+      Width = 42
       Height = 24
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -1337,8 +1364,8 @@ object Form_Main: TForm_Main
       Text = '200'
     end
     object Edit_AvR: TEdit
-      Left = 410
-      Top = 145
+      Left = 399
+      Top = 163
       Width = 31
       Height = 24
       Font.Charset = DEFAULT_CHARSET
@@ -1351,9 +1378,9 @@ object Form_Main: TForm_Main
       Text = '1'
     end
     object BB_Copy_Cond: TBitBtn
-      Left = 208
+      Left = 6
       Top = 21
-      Width = 85
+      Width = 90
       Height = 25
       Caption = 'Save Cond.'
       Font.Charset = DEFAULT_CHARSET
@@ -1366,8 +1393,8 @@ object Form_Main: TForm_Main
       OnClick = BB_Copy_CondClick
     end
     object CB_BKOnly: TCheckBox
-      Left = 109
-      Top = 56
+      Left = 107
+      Top = 87
       Width = 44
       Height = 17
       Caption = 'Only'
@@ -1380,8 +1407,8 @@ object Form_Main: TForm_Main
       TabOrder = 23
     end
     object Edit_ImgNo: TEdit
-      Left = 109
-      Top = 21
+      Left = 107
+      Top = 52
       Width = 70
       Height = 24
       Font.Charset = DEFAULT_CHARSET
@@ -1394,8 +1421,8 @@ object Form_Main: TForm_Main
       Text = '0'
     end
     object UD_ImgNo: TUpDown
-      Left = 179
-      Top = 21
+      Left = 177
+      Top = 52
       Width = 16
       Height = 24
       Associate = Edit_ImgNo
@@ -1404,9 +1431,9 @@ object Form_Main: TForm_Main
       OnClick = UD_ImgNoClick
     end
     object BB_SaveImg: TBitBtn
-      Left = 300
+      Left = 104
       Top = 21
-      Width = 106
+      Width = 95
       Height = 25
       Caption = 'Save Ph map'
       Font.Charset = DEFAULT_CHARSET
@@ -1417,6 +1444,36 @@ object Form_Main: TForm_Main
       ParentFont = False
       TabOrder = 26
       OnClick = BB_SaveImgClick
+    end
+    object CB_AutoPro: TCheckBox
+      Left = 315
+      Top = 108
+      Width = 97
+      Height = 17
+      Caption = 'Auto Pro'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 27
+    end
+    object CB_Auto_MakeSino: TCheckBox
+      Left = 215
+      Top = 25
+      Width = 122
+      Height = 17
+      Caption = 'Auto Make Sino'
+      Checked = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      State = cbChecked
+      TabOrder = 28
     end
   end
   object OpenDialog1: TOpenDialog

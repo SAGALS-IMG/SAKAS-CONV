@@ -105,6 +105,10 @@ type
     Label_Sample_Name: TLabel;
     BB_SaveImg: TBitBtn;
     SaveDialog1: TSaveDialog;
+    Label18: TLabel;
+    Edit_Skip: TEdit;
+    CB_AutoPro: TCheckBox;
+    CB_Auto_MakeSino: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Init_Cond(Sender: TObject);
@@ -155,7 +159,7 @@ var
 
   ImgPV : TForm_PW;
 
-  BKInt, Pro, BKNum, OffImg, FSN, ImgN : longint;
+  BKInt, Pro, BKNum, OffImg, FSN, ImgN, Skip_N : longint;
   BKData : array[0..8] of TData;
   NData, TmpData, SSData, DARKData : TData;
   Go : boolean;
@@ -288,9 +292,13 @@ begin
   end;
   BKNum := StrToInt(Edit_BKNum.Text);
   BKInt := StrToInt(Edit_BKInt.Text);
-  FSN := StrToInt(Edit_FS.Text);
+  if CB_Method.ItemIndex=1 then
+    FSN := StrToInt(Edit_FS.Text)
+  else
+    FSN := 1;
   Pro := StrToInt(Edit_PRo.Text);
   ImgN := StrToInt(Edit_ImgN.Text);
+  Skip_N := StrToInt(Edit_Skip.Text);
   if BKInt =0 then
   begin
     CB_BKOnly.Checked := true;
@@ -805,7 +813,7 @@ begin
         TmpStr := '';
         for k:=0 to FSN-1 do
         begin
-          ImgPV.UD_TPro.Position := Int64((BKInt+BKNum)*FSN*m+k+(km-1)*FSN);
+          ImgPV.UD_TPro.Position := Int64((BKInt+BKNum)*FSN*m+k+(km-1)*FSN+Skip_N);
           TmpStr := TmpStr+' '+ImgPV.UD_TPro.Position.ToString;
           ImgPV.Load_WORDData(Edit_FN.Text,Sender);
           for j:=0 to ImgPV.PH-1 do
@@ -903,17 +911,18 @@ begin
   if CB_BKOnly.Checked then
   begin
     m:=UD_PrevBK.Position;
-    for k:=0 to m-1 do
-    begin
-      for j:=0 to ImgPV.PH-1 do
-        for i:=0 to ImgPV.PW-1 do
-        begin
-          BKRe[k,j,i] := BKRe[m,j,i];
-          BKIm[k,j,i] := BKIm[m,j,i];
-          BKABS[k,j,i] := BKABS[m,j,i];
-        end;
-    end;
-    for k:=m+1 to ImgN div BKInt+1 do
+    if m>0 then
+      for k:=0 to m-1 do
+      begin
+        for j:=0 to ImgPV.PH-1 do
+          for i:=0 to ImgPV.PW-1 do
+          begin
+            BKRe[k,j,i] := BKRe[m,j,i];
+            BKIm[k,j,i] := BKIm[m,j,i];
+            BKABS[k,j,i] := BKABS[m,j,i];
+          end;
+      end;
+    for k:=m+1 to (ImgN div (BKInt*FSN)) do
     begin
       for j:=0 to ImgPV.PH-1 do
         for i:=0 to ImgPV.PW-1 do
@@ -927,16 +936,13 @@ begin
   else
   begin
     m:= ImgN div (BKInt*FSN);
-    for k:=m+1 to m+1 do
-    begin
-      for j:=0 to ImgPV.PH-1 do
-        for i:=0 to ImgPV.PW-1 do
-        begin
-          BKRe[k,j,i] := BKRe[m,j,i];
-          BKIm[k,j,i] := BKIm[m,j,i];
-          BKABS[k,j,i] := BKABS[m,j,i];
-        end;
-    end;
+    for j:=0 to ImgPV.PH-1 do
+      for i:=0 to ImgPV.PW-1 do
+      begin
+        BKRe[m+1,j,i] := BKRe[m,j,i];
+        BKIm[m+1,j,i] := BKIm[m,j,i];
+        BKABS[m+1,j,i] := BKABS[m,j,i];
+      end;
   end;
 
   m := UD_PrevBK.Position;
@@ -1138,7 +1144,7 @@ end;
 
 procedure TForm_Main.BB_NormClick(Sender: TObject);
 var
-  k,kk,i,ii,j,jj,lPW,lPH, lPRo:longint;
+  k,kk,i,ii,j,jj,lPW,lPH, lPRo, FSize:longint;
   FS :TFileStream;
   TmpDbl ,lRe,lIm,l: double;
   BFN, BDir, lFN : string;
@@ -1164,6 +1170,18 @@ begin
   lPro := StrToInt(Edit_ImgN.Text);
   if CB_Method.ItemIndex = 1 then
     lPro := (lPro-FSN*BKNum) div FSN;
+
+  if CB_AutoPro.Checked then
+  begin
+    FS :=TFileStream.Create(Edit_FN.Text,fmOpenRead);
+    FSize := FS.Size;
+    FS.Free;
+    lPro := FSize div (ImgPV.PW*ImgPV.PH*2*FSN){-BKNum};
+
+    Edit_ImgN.Text := (FSize div (ImgPV.PW*ImgPV.PH*2)).ToString;
+
+  end;
+
   for k:=0 to lPro-1 do
   begin
     if (((k mod (BKInt+BKNum))>=BKNum) or (Edit_BKFN1.Text<>'')) then
@@ -1338,6 +1356,9 @@ begin
       end;
     end;
   end;
+
+  if CB_AutoPro.Checked then
+    Edit_Pro.Text := (kk-1).ToString;
 end;
 
 procedure TForm_Main.BB_MakeSinoClick(Sender: TObject);
@@ -1587,7 +1608,8 @@ begin
       TagFN :=  CLB_File.Items[CLB_File.ItemIndex];
       OpenTag(Sender);
       BB_NormClick(Sender);
-      BB_MakeSinoClick(Sender);
+      if CB_Auto_MakeSino.Checked then
+        BB_MakeSinoClick(Sender);
       CLB_File.Checked[li] := false;
     end;
   end;
