@@ -1234,7 +1234,7 @@ object Form_Main: TForm_Main
       TabOrder = 12
     end
     object BB_Norm: TBitBtn
-      Left = 208
+      Left = 209
       Top = 52
       Width = 85
       Height = 25
@@ -1451,6 +1451,7 @@ object Form_Main: TForm_Main
       Width = 97
       Height = 17
       Caption = 'Auto Pro'
+      Enabled = False
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -1458,6 +1459,7 @@ object Form_Main: TForm_Main
       Font.Style = []
       ParentFont = False
       TabOrder = 27
+      Visible = False
     end
     object CB_Auto_MakeSino: TCheckBox
       Left = 215
