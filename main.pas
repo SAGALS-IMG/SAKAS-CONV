@@ -60,7 +60,7 @@ type
     UD_PrevNImg: TUpDown;
     CB_Ln2: TCheckBox;
     CB_WOBK: TCheckBox;
-    BB_Norm: TBitBtn;
+    BB_MakePro: TBitBtn;
     BB_STop2: TBitBtn;
     CB_SwapXY: TCheckBox;
     CB_Bin: TCheckBox;
@@ -79,11 +79,11 @@ type
     SB_ViewInfo: TSpeedButton;
     SB_BK1: TSpeedButton;
     Edit_BKFN2: TEdit;
+    Edit_BKFN1: TEdit;
     SB_BK2: TSpeedButton;
     Label11: TLabel;
     Label12: TLabel;
     Label14: TLabel;
-    Edit_BKFN1: TEdit;
     CB_Method: TComboBox;
     Label15: TLabel;
     Label16: TLabel;
@@ -107,8 +107,8 @@ type
     SaveDialog1: TSaveDialog;
     Label18: TLabel;
     Edit_Skip: TEdit;
-    CB_AutoPro: TCheckBox;
     CB_Auto_MakeSino: TCheckBox;
+    SB_CalibBKPos: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Init_Cond(Sender: TObject);
@@ -122,7 +122,7 @@ type
     procedure BB_Prev_NImgClick(Sender: TObject);
     procedure UD_PrevBKClick(Sender: TObject; Button: TUDBtnType);
     procedure UD_PrevNImgClick(Sender: TObject; Button: TUDBtnType);
-    procedure BB_NormClick(Sender: TObject);
+    procedure BB_MakeProClick(Sender: TObject);
     procedure BB_MakeSinoClick(Sender: TObject);
     procedure BB_Copy_CondClick(Sender: TObject);
     procedure CLB_FileClick(Sender: TObject);
@@ -147,6 +147,7 @@ type
     procedure SB_DirClick(Sender: TObject);
     procedure BB_STOP_ProcClick(Sender: TObject);
     procedure BB_SaveImgClick(Sender: TObject);
+    procedure SB_CalibBKPosClick(Sender: TObject);
 
   private
     { Private êÈåæ }
@@ -160,7 +161,7 @@ var
   ImgPV : TForm_PW;
 
   BKInt, Pro, BKNum, OffImg, FSN, ImgN, Skip_N : longint;
-  BKData : array[0..8] of TData;
+  BKData : array[0..5] of TData;
   NData, TmpData, SSData, DARKData : TData;
   Go : boolean;
   TagFN : string;
@@ -177,7 +178,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit_SAKAS, Unit_ABOUT;
+uses Unit_SAKAS, Unit_ABOUT, Unit_Calib_BK_Pos;
 
 procedure TForm_Main.FormCreate(Sender: TObject);
 var
@@ -304,6 +305,7 @@ begin
     CB_BKOnly.Checked := true;
     BKInt := ImgN+1;
   end;
+
 end;
 
 
@@ -399,14 +401,14 @@ begin
     Ini.WriteInteger( 'Proc_2', 'Offset_X', StrToInt(LEdit_OffX.Text));
     Ini.WriteInteger( 'Proc_2', 'Offset_Y', StrToInt(LEdit_OffY.Text));
 
-    Ini.WriteInteger( 'Proc_2', 'Format', 3);
+    Ini.WriteInteger( 'Proc_2', 'Format', 4);
 
     Ini.WriteBool( 'Proc_2', 'XY_Swap',  CB_SwapXY.Checked);
     Ini.WriteBool( 'Proc_2', 'BINNING',  CB_Bin.Checked);
     Ini.WriteBool( 'Proc_2', 'Med_Filter',CB_Med.Checked);
 
-    Ini.WriteInteger( 'Proc_2', 'Sino_ST', StrToInt(Edit_SinoST.Text));
-    Ini.WriteInteger( 'Proc_2', 'Sino_End', StrToInt(Edit_SinoEnd.Text));
+    Ini.WriteInteger( 'Proc_2', 'ST', StrToInt(Edit_SinoST.Text));
+    Ini.WriteInteger( 'Proc_2', 'End', StrToInt(Edit_SinoEnd.Text));
   finally
     Ini.Free;
   end;
@@ -734,12 +736,20 @@ begin
 
   if not(CB_WOBK.Checked) then
   begin
-    for j:=0 to ImgPV.PH-1 do
-      for i:=0 to ImgPV.PW-1 do
-      begin
-        TmpBK := BKData[SubBK,j,i] *b+BKData[SubBK+1,j,i]*a;
-        NData[j,i] := ((TmpData[j,i]-DarkData[j,i])/(TmpBK-DarkData[j,i]));
-      end;
+    if Form_Calib_BK.CB_Cal_BK.Checked then
+    begin
+      Form_Calib_BK.CalBK(m-BKNum,BKInt);
+      NData := ImgPV.PData;
+    end
+    else
+    begin
+      for j:=0 to ImgPV.PH-1 do
+        for i:=0 to ImgPV.PW-1 do
+        begin
+          TmpBK := BKData[SubBK,j,i] *b+BKData[SubBK+1,j,i]*a;
+          NData[j,i] := ((TmpData[j,i]-DarkData[j,i])/(TmpBK-DarkData[j,i]));
+        end;
+    end;
   end
   else
     NData := TmpData;
@@ -1142,7 +1152,7 @@ begin
 end;
 
 
-procedure TForm_Main.BB_NormClick(Sender: TObject);
+procedure TForm_Main.BB_MakeProClick(Sender: TObject);
 var
   k,kk,i,ii,j,jj,lPW,lPH, lPRo, FSize:longint;
   FS :TFileStream;
@@ -1152,6 +1162,14 @@ var
 begin
   Init_Cond(Sender);
   Memo.Lines.Clear;
+  if Form_Calib_BK.CB_Cal_BK.Checked then
+  begin
+    Form_Calib_BK.Memo.Clear;
+    Form_Calib_BK.Series1.Clear;
+    Form_Calib_BK.Series2.Clear;
+    Form_Calib_BK.Series3.Clear;
+    Form_Calib_BK.Series4.Clear;
+  end;
 
   Go := true;
   BFN := Edit_FN.Text;
@@ -1170,17 +1188,6 @@ begin
   lPro := StrToInt(Edit_ImgN.Text);
   if CB_Method.ItemIndex = 1 then
     lPro := (lPro-FSN*BKNum) div FSN;
-
-  if CB_AutoPro.Checked then
-  begin
-    FS :=TFileStream.Create(Edit_FN.Text,fmOpenRead);
-    FSize := FS.Size;
-    FS.Free;
-    lPro := FSize div (ImgPV.PW*ImgPV.PH*2*FSN){-BKNum};
-
-    Edit_ImgN.Text := (FSize div (ImgPV.PW*ImgPV.PH*2)).ToString;
-
-  end;
 
   for k:=0 to lPro-1 do
   begin
@@ -1357,8 +1364,6 @@ begin
     end;
   end;
 
-  if CB_AutoPro.Checked then
-    Edit_Pro.Text := (kk-1).ToString;
 end;
 
 procedure TForm_Main.BB_MakeSinoClick(Sender: TObject);
@@ -1607,7 +1612,7 @@ begin
     begin
       TagFN :=  CLB_File.Items[CLB_File.ItemIndex];
       OpenTag(Sender);
-      BB_NormClick(Sender);
+      BB_MakeProClick(Sender);
       if CB_Auto_MakeSino.Checked then
         BB_MakeSinoClick(Sender);
       CLB_File.Checked[li] := false;
@@ -1635,6 +1640,11 @@ procedure TForm_Main.SB_BK2Click(Sender: TObject);
 begin
   if OpenDialog1.Execute then
     Edit_BKFN2.Text := OpenDialog1.FileName;
+end;
+
+procedure TForm_Main.SB_CalibBKPosClick(Sender: TObject);
+begin
+  Form_Calib_BK.Show;
 end;
 
 procedure TForm_Main.SB_DirClick(Sender: TObject);

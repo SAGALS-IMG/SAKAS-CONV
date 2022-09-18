@@ -610,8 +610,8 @@ object Form_Main: TForm_Main
       TabOrder = 15
     end
     object Edit_BKFN1: TEdit
-      Left = 66
-      Top = -222
+      Left = 74
+      Top = 77
       Width = 334
       Height = 24
       Font.Charset = DEFAULT_CHARSET
@@ -1064,12 +1064,26 @@ object Form_Main: TForm_Main
       Font.Style = []
       ParentFont = False
     end
+    object SB_CalibBKPos: TSpeedButton
+      Left = 353
+      Top = 52
+      Width = 79
+      Height = 25
+      Caption = 'Calib BK'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clTeal
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      OnClick = SB_CalibBKPosClick
+    end
     object BB_Open: TBitBtn
       Left = 6
       Top = 52
       Width = 90
       Height = 25
-      Caption = 'Open Image'
+      Caption = 'Preview'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clNavy
       Font.Height = -13
@@ -1233,10 +1247,10 @@ object Form_Main: TForm_Main
       ParentFont = False
       TabOrder = 12
     end
-    object BB_Norm: TBitBtn
+    object BB_MakePro: TBitBtn
       Left = 209
       Top = 52
-      Width = 85
+      Width = 75
       Height = 25
       Caption = 'Make Pro'
       Font.Charset = DEFAULT_CHARSET
@@ -1246,12 +1260,12 @@ object Form_Main: TForm_Main
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 4
-      OnClick = BB_NormClick
+      OnClick = BB_MakeProClick
     end
     object BB_STop2: TBitBtn
-      Left = 300
+      Left = 290
       Top = 52
-      Width = 85
+      Width = 57
       Height = 25
       Caption = 'STOP'
       Font.Charset = DEFAULT_CHARSET
@@ -1445,22 +1459,6 @@ object Form_Main: TForm_Main
       TabOrder = 26
       OnClick = BB_SaveImgClick
     end
-    object CB_AutoPro: TCheckBox
-      Left = 315
-      Top = 108
-      Width = 97
-      Height = 17
-      Caption = 'Auto Pro'
-      Enabled = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 27
-      Visible = False
-    end
     object CB_Auto_MakeSino: TCheckBox
       Left = 215
       Top = 25
@@ -1475,7 +1473,7 @@ object Form_Main: TForm_Main
       Font.Style = [fsBold]
       ParentFont = False
       State = cbChecked
-      TabOrder = 28
+      TabOrder = 27
     end
   end
   object OpenDialog1: TOpenDialog
