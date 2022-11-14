@@ -161,7 +161,8 @@ var
   ImgPV : TForm_PW;
 
   BKInt, Pro, BKNum, OffImg, FSN, ImgN, Skip_N : longint;
-  BKData : array[0..5] of TData;
+//  BKData : array[0..5] of TData;
+  BKData : array[0..2] of TData;
   NData, TmpData, SSData, DARKData : TData;
   Go : boolean;
   TagFN : string;
